@@ -189,10 +189,24 @@ def save_chat_history():
 def index():
     if "username" not in session:
         return redirect(url_for("login"))
+    
     username = session["username"]
+    user = users.get(username)
+
+    if not user:
+        session.pop("username", None)
+        return redirect(url_for("login"))
+
     if username == "master":
         return render_template_string(game_template_master)
-    return render_template_string(game_template_player, teams=teams, chat_history=chat_history, game_started=game_started, role=users[username]["role"])
+
+    return render_template_string(
+        game_template_player, 
+        teams=teams, 
+        chat_history=chat_history, 
+        game_started=game_started, 
+        role=user["role"]
+    )
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -244,22 +258,41 @@ def download_chat():
 @app.route("/action", methods=["POST"])
 def action():
     if "username" not in session or not game_started:
-        return redirect(url_for("index"))
+                return redirect(url_for("index"))
+
     action = request.form.get("action")
+
     chat_history.append(f"{session['username']} performed action: {action}")
+
     return redirect(url_for("index"))
+
+
 
 @app.route("/send_message", methods=["POST"])
+
 def send_message():
+
     if "username" not in session:
+
         return redirect(url_for("index"))
+
     message = request.form.get("message")
+
     chat_history.append(f"{session['username']}: {message}")
+
     return redirect(url_for("index"))
 
+
+
 @app.route("/commentator", methods=["GET"])
+
 def commentator():
+
     return render_template_string(game_template_player, teams=teams, chat_history=chat_history, game_started=game_started, role="commentator")
 
+
+
 if __name__ == "__main__":
+
     app.run(debug=True)
+
