@@ -187,9 +187,27 @@ def save_chat_history():
 
 @app.route("/", methods=["GET"])
 def index():
+    return redirect(url_for("login"))
+
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = None
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        user = users.get(username)
+        if user and check_password_hash(user["password"], password):
+            session["username"] = username
+            return redirect(url_for("dashboard"))
+        else:
+            error = "Invalid username or password."
+    return render_template_string(login_template, error=error)
+
+@app.route("/dashboard", methods=["GET"])
+def dashboard():
     if "username" not in session:
         return redirect(url_for("login"))
-    
+
     username = session["username"]
     user = users.get(username)
 
@@ -208,20 +226,6 @@ def index():
         role=user["role"]
     )
 
-@app.route("/login", methods=["GET", "POST"])
-def login():
-    error = None
-    if request.method == "POST":
-        username = request.form.get("username")
-        password = request.form.get("password")
-        user = users.get(username)
-        if user and check_password_hash(user["password"], password):
-            session["username"] = username
-            return redirect(url_for("index"))
-        else:
-            error = "Invalid username or password."
-    return render_template_string(login_template, error=error)
-
 @app.route("/logout", methods=["POST"])
 def logout():
     session.pop("username", None)
@@ -232,7 +236,7 @@ def start_game():
     if "username" in session and session["username"] == "master":
         global game_started
         game_started = True
-    return redirect(url_for("index"))
+    return redirect(url_for("dashboard"))
 
 @app.route("/end_game", methods=["POST"])
 def end_game():
@@ -246,52 +250,40 @@ def end_game():
         snitch_caught = False
         if os.path.exists(chat_file):
             os.remove(chat_file)
-    return redirect(url_for("index"))
+    return redirect(url_for("dashboard"))
 
 @app.route("/download_chat", methods=["POST"])
 def download_chat():
     if "username" in session and session["username"] == "master":
         save_chat_history()
         return send_file(chat_file, as_attachment=True)
-    return redirect(url_for("index"))
+    return redirect(url_for("dashboard"))
 
 @app.route("/action", methods=["POST"])
 def action():
     if "username" not in session or not game_started:
-                return redirect(url_for("index"))
+        return redirect(url_for("dashboard"))
 
     action = request.form.get("action")
 
     chat_history.append(f"{session['username']} performed action: {action}")
 
-    return redirect(url_for("index"))
-
-
+    return redirect(url_for("dashboard"))
 
 @app.route("/send_message", methods=["POST"])
-
 def send_message():
-
     if "username" not in session:
-
-        return redirect(url_for("index"))
+        return redirect(url_for("dashboard"))
 
     message = request.form.get("message")
 
     chat_history.append(f"{session['username']}: {message}")
 
-    return redirect(url_for("index"))
-
-
+    return redirect(url_for("dashboard"))
 
 @app.route("/commentator", methods=["GET"])
-
 def commentator():
-
     return render_template_string(game_template_player, teams=teams, chat_history=chat_history, game_started=game_started, role="commentator")
 
-
-
 if __name__ == "__main__":
-
     app.run(debug=True)
