@@ -107,7 +107,7 @@ login_template = """
         <button type="submit">Login</button>
     </form>
     <br>
-    <a href="/commentator">Watch as Commentator</a>
+    <a href="/spectator">Watch as Spectator</a>
     {% if error %}
     <p style="color: red;">{{ error }}</p>
     {% endif %}
@@ -179,7 +179,7 @@ game_template_player = """
             <p>{{ message }}</p>
         {% endfor %}
     </div>
-    {% if role != 'commentator' %}
+    {% if role != 'spectator' %}
     <form action="/send_message" method="post">
         <input type="text" name="message" placeholder="Enter your message" required style="width: 90%;">
         <button type="submit">Send</button>
@@ -289,9 +289,12 @@ def send_message():
 
     return redirect(url_for("dashboard"))
 
-@app.route("/commentator", methods=["GET"])
-def commentator():
-    return render_template_string(game_template_player, teams=teams, chat_history=chat_history, game_started=game_started, role="commentator")
+@app.route("/spectator", methods=["GET"])
+def spectator():
+    if "spectator_id" not in session:
+        session["spectator_id"] = "Spectator"
+    spectator_name = session["spectator_id"]
+    return render_template_string(game_template_player, teams=teams, chat_history=chat_history, game_started=game_started, role="spectator")
 
 if __name__ == "__main__":
     app.run(debug=True)
