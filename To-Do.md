@@ -1,6 +1,6 @@
 Allow master to chat.
 Auto-update chat for everyone who has logged in whenever anything appears in chat.
-When logging in as spectator, ensure the name appears correctly (currently Player 1 or other) rather than "spectator."
+When logging in as spectator, ensure the name appears correctly (currently Player 1 or other) rather than "spectator." : Done
 Every character has a combination of 6 skillsets (accuracy, handling, defense, agility, strength, morale) and 3 for their broom (speed, maneuverability, stability).
 These things can be edited only by the master on their dashboard (and not in coding). Even broom name and player name can be edited from there.
 Game end and declaration msg (Snitch caught, game won by)
