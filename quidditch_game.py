@@ -155,6 +155,9 @@ game_template_player = """
 <body>
     {% if role != 'spectator' %}
         <h1>Welcome {{ session['username'] }}</h1>
+        <h2>Role: {{ role }}
+    {% if role == 'spectator' %}
+        <h1>Welcome Spectator</h1>
         <h2>Role: {{ role }}</h2>
     {% endif %}
     <h3>Team 1 Score: {{ teams['team_1']['score'] }}</h3>
