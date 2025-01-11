@@ -1,5 +1,7 @@
-from flask import Flask, request, jsonify, render_template_string, session, redirect, url_for
+from flask import Flask, request, jsonify, render_template_string, session, redirect, url_for, send_file
 from werkzeug.security import generate_password_hash, check_password_hash
+import random
+import os
 
 app = Flask(__name__)
 app.secret_key = 'quidditch_secret_key'
@@ -12,11 +14,59 @@ users = {
     },
     "player1": {
         "password": generate_password_hash("player1pass"),
-        "role": "player"
+        "role": "chaser"
     },
     "player2": {
         "password": generate_password_hash("player2pass"),
-        "role": "player"
+        "role": "chaser"
+    },
+    "player3": {
+        "password": generate_password_hash("player3pass"),
+        "role": "chaser"
+    },
+    "player4": {
+        "password": generate_password_hash("player4pass"),
+        "role": "keeper"
+    },
+    "player5": {
+        "password": generate_password_hash("player5pass"),
+        "role": "beater"
+    },
+    "player6": {
+        "password": generate_password_hash("player6pass"),
+        "role": "beater"
+    },
+    "player7": {
+        "password": generate_password_hash("player7pass"),
+        "role": "seeker"
+    },
+    "player8": {
+        "password": generate_password_hash("player8pass"),
+        "role": "chaser"
+    },
+    "player9": {
+        "password": generate_password_hash("player9pass"),
+        "role": "chaser"
+    },
+    "player10": {
+        "password": generate_password_hash("player10pass"),
+        "role": "chaser"
+    },
+    "player11": {
+        "password": generate_password_hash("player11pass"),
+        "role": "keeper"
+    },
+    "player12": {
+        "password": generate_password_hash("player12pass"),
+        "role": "beater"
+    },
+    "player13": {
+        "password": generate_password_hash("player13pass"),
+        "role": "beater"
+    },
+    "player14": {
+        "password": generate_password_hash("player14pass"),
+        "role": "seeker"
     }
 }
 
@@ -34,6 +84,9 @@ teams = {
 quaffle_possession = "team_1"
 snitch_caught = False
 current_event = ""
+game_started = False
+chat_history = []
+chat_file = "chat_history.txt"
 
 # HTML templates
 login_template = """
@@ -53,6 +106,8 @@ login_template = """
         <input type="password" id="password" name="password" required><br><br>
         <button type="submit">Login</button>
     </form>
+    <br>
+    <a href="/commentator">Watch as Commentator</a>
     {% if error %}
     <p style="color: red;">{{ error }}</p>
     {% endif %}
@@ -60,56 +115,84 @@ login_template = """
 </html>
 """
 
-game_template = """
+game_template_master = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Controls</title>
+</head>
+<body>
+    <h1>Quidditch Game Master Controls</h1>
+    <form action="/start_game" method="post">
+        <button type="submit">Start Game</button>
+    </form>
+    <form action="/download_chat" method="post">
+        <button type="submit">Download Chat History</button>
+    </form>
+    <form action="/end_game" method="post">
+        <button type="submit">End Game</button>
+    </form>
+</body>
+</html>
+"""
+
+game_template_player = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Quidditch Game</title>
-    <style>
-        body { font-family: Arial, sans-serif; margin: 20px; }
-        .options { margin: 10px 0; }
-        .action-button { margin: 5px; padding: 10px 15px; font-size: 16px; cursor: pointer; }
-    </style>
 </head>
 <body>
-    <h1>Quidditch Multiplayer Game</h1>
-    <h2>Team 1 Score: {{ teams['team_1']['score'] }}</h2>
-    <h2>Team 2 Score: {{ teams['team_2']['score'] }}</h2>
-
-    {% if snitch_caught %}
-    <h3>The game is over! {{ snitch_caught }} wins!</h3>
-    {% else %}
-    <h3>Current Event: {{ current_event }}</h3>
-    <div class="options">
+    <h1>Welcome {{ session['username'] }}</h1>
+    <h2>Role: {{ role }}</h2>
+    <h3>Team 1 Score: {{ teams['team_1']['score'] }}</h3>
+    <h3>Team 2 Score: {{ teams['team_2']['score'] }}</h3>
+    {% if game_started %}
         <form action="/action" method="post">
-            <button name="action" value="catch_quaffle" class="action-button">Catch Quaffle</button>
-            <button name="action" value="snatch_snitch" class="action-button">Snatch Snitch</button>
-            <button name="action" value="dodge" class="action-button">Dodge</button>
-            <button name="action" value="hit_bludger" class="action-button">Hit with Bludger</button>
-            <button name="action" value="name_calling" class="action-button">Name Calling</button>
+            {% if role == 'chaser' %}
+                <button name="action" value="catch_quaffle">Catch Quaffle</button>
+                <button name="action" value="pass_quaffle">Pass Quaffle</button>
+            {% elif role == 'keeper' %}
+                <button name="action" value="block_goal">Block Goal</button>
+            {% elif role == 'beater' %}
+                <button name="action" value="hit_bludger">Hit Bludger</button>
+            {% elif role == 'seeker' %}
+                <button name="action" value="catch_snitch">Catch Snitch</button>
+            {% endif %}
         </form>
-    </div>
+    {% else %}
+        <p>Waiting for the master to start the game...</p>
     {% endif %}
-
-    <h3>Players:</h3>
-    <ul>
-        <li>Team 1: {{ teams['team_1']['players'] }}</li>
-        <li>Team 2: {{ teams['team_2']['players'] }}</li>
-    </ul>
-    <form action="/logout" method="post">
-        <button type="submit">Logout</button>
+    <h3>Chat</h3>
+    <div style="border: 1px solid #000; padding: 10px; height: 300px; overflow-y: scroll;">
+        {% for message in chat_history %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+    <form action="/send_message" method="post">
+        <input type="text" name="message" placeholder="Enter your message" required>
+        <button type="submit">Send</button>
     </form>
 </body>
 </html>
 """
 
+def save_chat_history():
+    with open(chat_file, "w") as f:
+        f.write("\n".join(chat_history))
+
 @app.route("/", methods=["GET"])
 def index():
     if "username" not in session:
         return redirect(url_for("login"))
-    return render_template_string(game_template, teams=teams, snitch_caught=snitch_caught, current_event=current_event)
+    username = session["username"]
+    if username == "master":
+        return render_template_string(game_template_master)
+    return render_template_string(game_template_player, teams=teams, chat_history=chat_history, game_started=game_started, role=users[username]["role"])
 
 @app.route("/login", methods=["GET", "POST"])
 def login():
@@ -130,31 +213,53 @@ def logout():
     session.pop("username", None)
     return redirect(url_for("login"))
 
+@app.route("/start_game", methods=["POST"])
+def start_game():
+    if "username" in session and session["username"] == "master":
+        global game_started
+        game_started = True
+    return redirect(url_for("index"))
+
+@app.route("/end_game", methods=["POST"])
+def end_game():
+    if "username" in session and session["username"] == "master":
+        global game_started, chat_history, teams, quaffle_possession, snitch_caught
+        game_started = False
+        chat_history = []
+        teams["team_1"]["score"] = 0
+        teams["team_2"]["score"] = 0
+        quaffle_possession = "team_1"
+        snitch_caught = False
+        if os.path.exists(chat_file):
+            os.remove(chat_file)
+    return redirect(url_for("index"))
+
+@app.route("/download_chat", methods=["POST"])
+def download_chat():
+    if "username" in session and session["username"] == "master":
+        save_chat_history()
+        return send_file(chat_file, as_attachment=True)
+    return redirect(url_for("index"))
+
 @app.route("/action", methods=["POST"])
 def action():
-    if "username" not in session:
-        return redirect(url_for("login"))
-
-    global quaffle_possession, snitch_caught, current_event
+    if "username" not in session or not game_started:
+        return redirect(url_for("index"))
     action = request.form.get("action")
-    event_outcomes = {
-        "catch_quaffle": "Chaser catches the Quaffle!",
-        "snatch_snitch": "Seeker dives for the Snitch!",
-        "dodge": "Player dodges expertly!",
-        "hit_bludger": "Beater hits the Bludger!",
-        "name_calling": "A player uses distracting name-calling!"
-    }
+    chat_history.append(f"{session['username']} performed action: {action}")
+    return redirect(url_for("index"))
 
-    if action in event_outcomes:
-        current_event = event_outcomes[action]
-        if action == "catch_quaffle":
-            teams[quaffle_possession]["score"] += 10
-        elif action == "snatch_snitch":
-            if random.randint(1, 100) > 80:  # 20% chance to catch the Snitch
-                snitch_caught = quaffle_possession
-                teams[quaffle_possession]["score"] += 150
+@app.route("/send_message", methods=["POST"])
+def send_message():
+    if "username" not in session:
+        return redirect(url_for("index"))
+    message = request.form.get("message")
+    chat_history.append(f"{session['username']}: {message}")
+    return redirect(url_for("index"))
 
-    return render_template_string(game_template, teams=teams, snitch_caught=snitch_caught, current_event=current_event)
+@app.route("/commentator", methods=["GET"])
+def commentator():
+    return render_template_string(game_template_player, teams=teams, chat_history=chat_history, game_started=game_started, role="commentator")
 
 if __name__ == "__main__":
     app.run(debug=True)
