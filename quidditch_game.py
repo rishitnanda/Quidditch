@@ -1,7 +1,24 @@
-from flask import Flask, request, jsonify, render_template_string
-import random
+from flask import Flask, request, jsonify, render_template_string, session, redirect, url_for
+from werkzeug.security import generate_password_hash, check_password_hash
 
 app = Flask(__name__)
+app.secret_key = 'quidditch_secret_key'
+
+# User data (predefined by master)
+users = {
+    "master": {
+        "password": generate_password_hash("masterpass"),
+        "role": "master"
+    },
+    "player1": {
+        "password": generate_password_hash("player1pass"),
+        "role": "player"
+    },
+    "player2": {
+        "password": generate_password_hash("player2pass"),
+        "role": "player"
+    }
+}
 
 # Game state
 teams = {
@@ -18,8 +35,32 @@ quaffle_possession = "team_1"
 snitch_caught = False
 current_event = ""
 
-# HTML template
-html_template = """
+# HTML templates
+login_template = """
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <h1>Login</h1>
+    <form action="/login" method="post">
+        <label for="username">Username:</label>
+        <input type="text" id="username" name="username" required><br><br>
+        <label for="password">Password:</label>
+        <input type="password" id="password" name="password" required><br><br>
+        <button type="submit">Login</button>
+    </form>
+    {% if error %}
+    <p style="color: red;">{{ error }}</p>
+    {% endif %}
+</body>
+</html>
+"""
+
+game_template = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -40,28 +81,6 @@ html_template = """
     {% if snitch_caught %}
     <h3>The game is over! {{ snitch_caught }} wins!</h3>
     {% else %}
-    <form action="/join" method="post">
-        <h3>Join the Game</h3>
-        <label for="player_name">Player Name:</label>
-        <input type="text" id="player_name" name="player_name" required><br><br>
-
-        <label for="team">Choose Team:</label>
-        <select id="team" name="team">
-            <option value="team_1">Team 1</option>
-            <option value="team_2">Team 2</option>
-        </select><br><br>
-
-        <label for="role">Choose Role:</label>
-        <select id="role" name="role">
-            <option value="chaser">Chaser</option>
-            <option value="beater">Beater</option>
-            <option value="keeper">Keeper</option>
-            <option value="seeker">Seeker</option>
-        </select><br><br>
-
-        <button type="submit" class="action-button">Join Game</button>
-    </form>
-    
     <h3>Current Event: {{ current_event }}</h3>
     <div class="options">
         <form action="/action" method="post">
@@ -79,29 +98,44 @@ html_template = """
         <li>Team 1: {{ teams['team_1']['players'] }}</li>
         <li>Team 2: {{ teams['team_2']['players'] }}</li>
     </ul>
+    <form action="/logout" method="post">
+        <button type="submit">Logout</button>
+    </form>
 </body>
 </html>
 """
 
 @app.route("/", methods=["GET"])
 def index():
-    return render_template_string(html_template, teams=teams, snitch_caught=snitch_caught, current_event=current_event)
+    if "username" not in session:
+        return redirect(url_for("login"))
+    return render_template_string(game_template, teams=teams, snitch_caught=snitch_caught, current_event=current_event)
 
-@app.route("/join", methods=["POST"])
-def join():
-    player_name = request.form.get("player_name")
-    team = request.form.get("team")
-    role = request.form.get("role")
+@app.route("/login", methods=["GET", "POST"])
+def login():
+    error = None
+    if request.method == "POST":
+        username = request.form.get("username")
+        password = request.form.get("password")
+        user = users.get(username)
+        if user and check_password_hash(user["password"], password):
+            session["username"] = username
+            return redirect(url_for("index"))
+        else:
+            error = "Invalid username or password."
+    return render_template_string(login_template, error=error)
 
-    if player_name not in teams[team]["players"]:
-        teams[team]["players"].append({"name": player_name, "role": role})
-
-    return render_template_string(html_template, teams=teams, snitch_caught=snitch_caught, current_event=current_event)
+@app.route("/logout", methods=["POST"])
+def logout():
+    session.pop("username", None)
+    return redirect(url_for("login"))
 
 @app.route("/action", methods=["POST"])
 def action():
-    global quaffle_possession, snitch_caught, current_event
+    if "username" not in session:
+        return redirect(url_for("login"))
 
+    global quaffle_possession, snitch_caught, current_event
     action = request.form.get("action")
     event_outcomes = {
         "catch_quaffle": "Chaser catches the Quaffle!",
@@ -119,8 +153,8 @@ def action():
             if random.randint(1, 100) > 80:  # 20% chance to catch the Snitch
                 snitch_caught = quaffle_possession
                 teams[quaffle_possession]["score"] += 150
-    
-    return render_template_string(html_template, teams=teams, snitch_caught=snitch_caught, current_event=current_event)
+
+    return render_template_string(game_template, teams=teams, snitch_caught=snitch_caught, current_event=current_event)
 
 if __name__ == "__main__":
     app.run(debug=True)
