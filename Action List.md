@@ -1,7 +1,3 @@
-Here is the updated list with Dodge Player and Dodge Bludger separated, and the changes applied accordingly:
-
----
-
  Chaser Actions:
 1. Dodge Player: Evade an incoming player.  
    Effect: Reduces handling by 10% for two actions.  

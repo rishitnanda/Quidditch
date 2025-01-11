@@ -1,7 +1,3 @@
-Here is the full list with success and failure statements, including the updated Namecall:
-
----
-
  Chaser Actions:
 
 1. Dodge Player:
@@ -33,7 +29,9 @@ Here is the full list with success and failure statements, including the updated
    - Failure: "The beater's move is too slow, and the opponent closes in, their mark easily catching up. The beater's attempt to evade ends in failure, as the opponent forces them to retreat."
 
 2. Namecall:
-   - Success: "The beater delivers a biting taunt to their opponent, throwing them off their game. The opponent hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct, adding extra pressure on the opposing player."
+   - Success + Warn: "The beater delivers a biting taunt to their opponent, throwing them off their game. The opponent hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct, adding extra pressure on the opposing player."
+   - Success (No Warn): Discreet successful name call.
+   - Failure: Namecall yields no result.
   
 3. Defend:
    - Success: "The beater steps in front of their teammate with impeccable timing, using their strength to block an incoming tackle. Their defensive play keeps the team safe and the offense in motion."
@@ -60,8 +58,9 @@ Here is the full list with success and failure statements, including the updated
    - Failure: "The seeker misjudges the opponent’s path, and the player closes in. They struggle to shake off the pursuit, losing vital seconds in the race toward the Snitch."
 
 3. Namecall:
-   - Success: "The seeker taunts an opponent with a calculated verbal jab, shaking their confidence. For a brief moment, the opposing player falters, allowing the seeker to make a swift move toward the Snitch."
-   - Failure: "The seeker’s attempt at namecalling falls flat. The opponent is unfazed, their morale remaining high despite the verbal taunts. The seeker’s efforts have no impact on the opponent's focus."
+   - Success + Warn: "The seeker taunts an opponent with a calculated verbal jab, shaking their confidence. For a brief moment, the opposing player falters, allowing the seeker to make a swift move toward the Snitch."
+   - Success (No Warn): Discreet successful name call.
+   - Failure: Namecall yields no result.
 
 4. Slow Hover:
    - Success: "The seeker hovers gracefully, taking a slow and calculated approach to the Snitch. Their patience pays off as they anticipate the golden ball’s next move, positioning themselves perfectly."
@@ -76,8 +75,9 @@ Here is the full list with success and failure statements, including the updated
    - Failure: "The keeper is too slow to react, and the attacker easily bypasses them. The keeper’s defensive efforts are foiled as the opposing player nears the goal with an open shot."
 
 2. Namecall:
-   - Success: "The keeper calls out an opponent with a well-placed taunt, causing their focus to waver. For a moment, the opponent hesitates, giving the keeper a valuable chance to block the shot."
-   - Failure: "The keeper’s namecalling fails to disrupt the opponent’s focus. The rival player remains steady, their morale unshaken as they line up for a shot on goal."
+   - Success + Warn: "The keeper calls out an opponent with a well-placed taunt, causing their focus to waver. For a moment, the opponent hesitates, giving the keeper a valuable chance to block the shot."
+   - Success (No Warn): Discreet successful name call.
+   - Failure: Namecall yields no result.
 
 3. Defend:
    - Success: "The keeper positions themselves perfectly, using their strength to block an incoming shot. With impeccable timing, they stop the Quaffle from crossing the line, keeping their team in the game."
