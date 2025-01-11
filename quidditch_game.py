@@ -134,6 +134,12 @@ game_template_master = """
     <form action="/end_game" method="post">
         <button type="submit">End Game</button>
     </form>
+    <h3>Chat</h3>
+    <div style="border: 1px solid #000; padding: 10px; height: 300px; overflow-y: scroll;">
+        {% for message in chat_history %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
 </body>
 </html>
 """
@@ -173,10 +179,12 @@ game_template_player = """
             <p>{{ message }}</p>
         {% endfor %}
     </div>
+    {% if role != 'commentator' %}
     <form action="/send_message" method="post">
-        <input type="text" name="message" placeholder="Enter your message" required>
+        <input type="text" name="message" placeholder="Enter your message" required style="width: 90%;">
         <button type="submit">Send</button>
     </form>
+    {% endif %}
 </body>
 </html>
 """
@@ -216,7 +224,7 @@ def dashboard():
         return redirect(url_for("login"))
 
     if username == "master":
-        return render_template_string(game_template_master)
+        return render_template_string(game_template_master, chat_history=chat_history)
 
     return render_template_string(
         game_template_player, 
