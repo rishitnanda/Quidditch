@@ -1,0 +1,96 @@
+Here is the full list with success and failure statements, including the updated Namecall:
+
+---
+
+ Chaser Actions:
+
+1. Dodge Player:
+   - Success: "With a swift sidestep, the chaser skillfully evades their opponent’s pursuit, gracefully maintaining control of the Quaffle. Their handling proves exceptional as they regain their momentum."
+   - Failure: "The chaser attempts to dodge but fails to shake off the pursuing player, their movements too predictable. The opponent closes in, forcing them to lose possession of the Quaffle momentarily."
+
+2. Dodge Bludger:
+   - Success: "The chaser ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback."
+   - Failure: "A well-timed bludger strikes the chaser squarely, knocking them off course. Their handling falters as they struggle to regain their footing and lose valuable seconds in the chase."
+
+3. Pass:
+   - Success: "The chaser releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. Their teammate catches it effortlessly, continuing the offensive without missing a beat."
+   - Failure: "The pass is off target, sailing wide of the intended recipient. The opponent swiftly intercepts, turning the play around and giving their team a much-needed break."
+
+4. Shoot:
+   - Success: "The chaser lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, slipping past the keeper and into the goal, a flawless display of precision and strength."
+   - Failure: "The chaser's shot is too rushed, lacking the finesse needed to break through the keeper’s defenses. The Quaffle misses the mark entirely, leaving their team to regroup for another attempt."
+
+5. Dunk:
+   - Success: "In a stunning display of athleticism, the chaser leaps towards the hoop, executing a perfect dunk that leaves the crowd roaring. Their timing and power were immaculate, making the keeper's block impossible."
+   - Failure: "The chaser jumps to dunk, but the defender anticipates the move and blocks it just in time. Their strength wasn't enough, and they’re left disappointed as the Quaffle rebounds out of reach."
+
+---
+
+ Beater Actions:
+
+1. Dodge Player:
+   - Success: "The beater skillfully avoids the incoming player, gliding smoothly away from danger. They make a quick turn, ready to assist their teammates while keeping their composure under pressure."
+   - Failure: "The beater's move is too slow, and the opponent closes in, their mark easily catching up. The beater's attempt to evade ends in failure, as the opponent forces them to retreat."
+
+2. Namecall:
+   - Success: "The beater delivers a biting taunt to their opponent, throwing them off their game. The opponent hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct, adding extra pressure on the opposing player."
+  
+3. Defend:
+   - Success: "The beater steps in front of their teammate with impeccable timing, using their strength to block an incoming tackle. Their defensive play keeps the team safe and the offense in motion."
+   - Failure: "The beater miscalculates the opponent’s movement, failing to effectively block the attack. The opposing player slips past, creating a dangerous situation for their teammates in the field."
+
+4. Beat Bludger:
+   - Success: "With a powerful swing, the beater sends the bludger flying directly towards an opponent. The well-aimed shot makes its mark, forcing the player to dodge, momentarily slowing their advance."
+   - Failure: "The beater misses their target, the bludger sailing off course. Their aim is off, and the opposing player continues without hindrance, maintaining their offensive drive unhindered."
+
+5. Disrupt Play:
+   - Success: "The beater’s quick thinking disrupts an opponent’s pass, intercepting the Quaffle mid-air. With a strategic move, they prevent a potential goal-scoring opportunity and set their team up for a counterattack."
+   - Failure: "The beater’s attempt to intercept the pass falls short, and the Quaffle sails into the hands of the opponent. The beater’s miscalculation gives the other team a clear shot at goal."
+
+---
+
+ Seeker Actions:
+
+1. Dive Toward Snitch:
+   - Success: "The seeker plunges forward with impressive speed, diving toward the Snitch. Their quick reflexes and calculated timing bring them within inches of the elusive golden ball."
+   - Failure: "The seeker dives, but just as they near the Snitch, it flits out of reach. Their timing was off, and they’re forced to pull up, watching as the opportunity slips away."
+
+2. Dodge Player:
+   - Success: "With a swift sidestep, the seeker evades the pursuing player, their agility keeping them free to continue the chase for the Snitch. The opponent is left behind as they gain precious ground."
+   - Failure: "The seeker misjudges the opponent’s path, and the player closes in. They struggle to shake off the pursuit, losing vital seconds in the race toward the Snitch."
+
+3. Namecall:
+   - Success: "The seeker taunts an opponent with a calculated verbal jab, shaking their confidence. For a brief moment, the opposing player falters, allowing the seeker to make a swift move toward the Snitch."
+   - Failure: "The seeker’s attempt at namecalling falls flat. The opponent is unfazed, their morale remaining high despite the verbal taunts. The seeker’s efforts have no impact on the opponent's focus."
+
+4. Slow Hover:
+   - Success: "The seeker hovers gracefully, taking a slow and calculated approach to the Snitch. Their patience pays off as they anticipate the golden ball’s next move, positioning themselves perfectly."
+   - Failure: "The seeker’s slow hover drags on, leaving them vulnerable. The Snitch darts away in a burst of speed, and the seeker is left hovering aimlessly, losing valuable ground in the search."
+
+---
+
+ Keeper Actions:
+
+1. Dodge Player:
+   - Success: "The keeper expertly dodges the attacking player, maintaining perfect balance while swiftly moving into position. Their agility ensures they can continue guarding the goal with confidence."
+   - Failure: "The keeper is too slow to react, and the attacker easily bypasses them. The keeper’s defensive efforts are foiled as the opposing player nears the goal with an open shot."
+
+2. Namecall:
+   - Success: "The keeper calls out an opponent with a well-placed taunt, causing their focus to waver. For a moment, the opponent hesitates, giving the keeper a valuable chance to block the shot."
+   - Failure: "The keeper’s namecalling fails to disrupt the opponent’s focus. The rival player remains steady, their morale unshaken as they line up for a shot on goal."
+
+3. Defend:
+   - Success: "The keeper positions themselves perfectly, using their strength to block an incoming shot. With impeccable timing, they stop the Quaffle from crossing the line, keeping their team in the game."
+   - Failure: "The keeper lunges too early, misjudging the shot’s trajectory. The Quaffle sails past them, and they are left helpless as the opponent scores an easy goal."
+
+4. Block:
+   - Success: "With incredible reflexes, the keeper blocks the shot with an outstretched arm, denying the opposing team a goal. Their quick thinking and strength make this defensive play a game-changer."
+   - Failure: "The keeper fails to react in time, watching helplessly as the Quaffle flies past them and into the goal. The opposing team celebrates as the keeper's defense comes up short."
+
+5. Team Defense:
+   - Success: "The keeper’s call to action strengthens the team’s defensive strategy. Players respond with focused energy, closing down the opponent’s attack and denying them any further offensive opportunities."
+   - Failure: "The keeper’s defensive strategy falters, and the opponent breaks through. Despite their best efforts, the team is left scrambling, and the opposing players easily push forward to take another shot."
+
+---
+
+Let me know if you'd like to make further modifications or adjustments!
