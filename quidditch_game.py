@@ -6,11 +6,11 @@ import os
 app = Flask(__name__)
 app.secret_key = 'quidditch_secret_key'
 
-# User data (predefined by master)
+# User data (predefined by referee)
 users = {
-    "master": {
-        "password": generate_password_hash("masterpass"),
-        "role": "master"
+    "referee": {
+        "password": generate_password_hash("refereepass"),
+        "role": "referee"
     },
     "player1": {
         "password": generate_password_hash("player1pass"),
@@ -115,16 +115,16 @@ login_template = """
 </html>
 """
 
-game_template_master = """
+game_template_referee = """
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Master Controls</title>
+    <title>Referee Controls</title>
 </head>
 <body>
-    <h1>Quidditch Game Master Controls</h1>
+    <h1>Quidditch Game Referee Controls</h1>
     <form action="/start_game" method="post">
         <button type="submit">Start Game</button>
     </form>
@@ -176,7 +176,7 @@ game_template_player = """
             {% endif %}
         </form>
     {% else %}
-        <p>Waiting for the master to start the game...</p>
+        <p>Waiting for the referee to start the game...</p>
     {% endif %}
     <h3>Chat</h3>
     <div style="border: 1px solid #000; padding: 10px; height: 300px; overflow-y: scroll;">
@@ -228,8 +228,8 @@ def dashboard():
         session.pop("username", None)
         return redirect(url_for("login"))
 
-    if username == "master":
-        return render_template_string(game_template_master, chat_history=chat_history)
+    if username == "referee":
+        return render_template_string(game_template_referee, chat_history=chat_history)
 
     return render_template_string(
         game_template_player, 
@@ -246,14 +246,14 @@ def logout():
 
 @app.route("/start_game", methods=["POST"])
 def start_game():
-    if "username" in session and session["username"] == "master":
+    if "username" in session and session["username"] == "referee":
         global game_started
         game_started = True
     return redirect(url_for("dashboard"))
 
 @app.route("/end_game", methods=["POST"])
 def end_game():
-    if "username" in session and session["username"] == "master":
+    if "username" in session and session["username"] == "referee":
         global game_started, chat_history, teams, quaffle_possession, snitch_caught
         game_started = False
         chat_history = []
@@ -267,7 +267,7 @@ def end_game():
 
 @app.route("/download_chat", methods=["POST"])
 def download_chat():
-    if "username" in session and session["username"] == "master":
+    if "username" in session and session["username"] == "referee":
         save_chat_history()
         return send_file(chat_file, as_attachment=True)
     return redirect(url_for("dashboard"))
