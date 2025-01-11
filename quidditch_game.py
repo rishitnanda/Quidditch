@@ -107,7 +107,7 @@ login_template = """
         <button type="submit">Login</button>
     </form>
     <br>
-    <a href="/spectator">Watch as Commentator</a>
+    <a href="/spectator">Watch as Spectator</a>
     {% if error %}
     <p style="color: red;">{{ error }}</p>
     {% endif %}
