@@ -153,8 +153,10 @@ game_template_player = """
     <title>Quidditch Game</title>
 </head>
 <body>
-    <h1>Welcome {% if role == 'Spectator' %}Spectator{% else %}{{ session['username'] }}{% endif %}</h1>
-    <h2>Role: {{ role }}</h2>
+    {% if role != 'spectator' %}
+        <h1>Welcome {{ session['username'] }}</h1>
+        <h2>Role: {{ role }}</h2>
+    {% endif %}
     <h3>Team 1 Score: {{ teams['team_1']['score'] }}</h3>
     <h3>Team 2 Score: {{ teams['team_2']['score'] }}</h3>
     {% if game_started %}
