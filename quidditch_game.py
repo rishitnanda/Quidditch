@@ -156,7 +156,7 @@ game_template_player = """
     {% if role != 'spectator' %}
         <h1>Welcome {{ session['username'] }}</h1>
         <h2>Role: {{ role }}
-    {% if role == 'spectator' %}
+    {% else %}
         <h1>Welcome Spectator</h1>
         <h2>Role: {{ role }}</h2>
     {% endif %}
