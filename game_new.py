@@ -311,3 +311,5 @@ def select_teams():
 
     return redirect(url_for("dashboard"))
 
+if __name__ == "__main__":
+    app.run(debug=True)
