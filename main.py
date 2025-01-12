@@ -705,7 +705,7 @@ def send_message():
                         if random.uniform(0,100)/100 < score_chance * ((users.get(session['username'])["skills"]["accuracy"] * 0.4) + (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1) + (users.get(session['username'])["skills"]["morale"] * 0.05)):
                             chat_history.append(f"{session['username']} lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, a flawless display of precision and strength.")
                             users.get(session['username'])["skills"]["strength"] * 0.97
-                            quaffle_possession = "Goal" + teams.get(users.get(session['username']))['team']['players'][-4]
+                            quaffle_possession = "Goal" + teams.get(users.get(session['username'])['team'])['players'][-4]
 
                 elif command[0][1:] == "Dunk" and session['username'] not in wounded and session['username'] not in injured:
                     if session['username'] == quaffle_possession:
@@ -716,9 +716,9 @@ def send_message():
                         users.get(session['username'])["skills"]["strength"] * 0.93
                         users.get(session['username'])["skills"]["defense"] * 0.93
                         
-                        r = selected_teams[0] if selected_teams[0] != teams.get(users.get(session['username']))['team'] else selected_teams[1]
+                        r = selected_teams[0] if selected_teams[0] != teams.get(users.get(session['username'])['team']) else selected_teams[1]
 
-                        quaffle_possession = teams.get(users.get(session['username']))['team']['players'][-4]
+                        quaffle_possession = r['team'])['players'][-4]
 
                 elif command[0][1:] == "Snatch" and session['username'] not in wounded and session['username'] not in injured:
                     if quaffle_possession == None:
@@ -916,8 +916,8 @@ def send_message():
                         chat_history.append(f"{session['username']} leaps into action, blocking the incoming Quaffle with a powerful save. Their strength and reflexes were unmatched, preventing a goal.")
                     else:
                         chat_history.append(f"{session['username']} attempts to block the Quaffle but fails to stop the goal.")
-                        r = selected_teams[0] if selected_teams[0] != teams.get(users.get(session['username']))['team'] else selected_teams[1]
-                        s = selected_teams[0] if selected_teams[0] == teams.get(users.get(session['username']))['team'] else selected_teams[1]
+                        r = selected_teams[0] if selected_teams[0] != teams.get(users.get(session['username'])['team']) else selected_teams[1]
+                        s = selected_teams[0] if selected_teams[0] == teams.get(users.get(session['username'])['team']) else selected_teams[1]
                         users.get(session['username'])['team']["score"] += 10
                         chat_history.append(f"Goal! 10 points to {s}.")
                         score_chance = 1
