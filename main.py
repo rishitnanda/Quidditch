@@ -369,9 +369,12 @@ teams = {
         "score": 0
     }
 }
-quaffle_possession = "team_1"
+quaffle_possession = None
 snitch_caught = False
-current_event = ""
+snitch_spot = False
+bludger_approach = []
+wounded = []
+injured = []
 game_started = False
 chat_history = []
 chat_file = "chat_history.txt"
@@ -581,7 +584,7 @@ def end_game():
         global game_started, chat_history, quaffle_possession, snitch_caught, selected_teams
         game_started = False
         chat_history = []
-        quaffle_possession = "team_1"
+        quaffle_possession = None
         snitch_caught = False
         selected_teams = []
         if os.path.exists(chat_file):
@@ -613,7 +616,9 @@ def send_message():
             if command[1] == "Namecall":
                 pass
             if command[1] == "Pass":
-                pass
+                if users.get(session['username']) == quaffle_possession:
+                    score_chance *= 1.2
+                    chat_history.append(f"users.get(session['username']).split()[-1] releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. command[-1] catches it effortlessly, continuing the offensive without missing a beat.")
             if command[1] == "Shoot":
                 pass
             if command[1] == "Dunk":

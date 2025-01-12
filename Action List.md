@@ -40,7 +40,7 @@
 4. Pass: Pass the Quaffle to a teammate. 
    Activate: If has Quaffle. 
    Counter: None
-   Effect: Increase scoring chance and snatch chance.
+   Effect: Increase scoring chance by 2%.
    Success Rate: `100%`
    Chance of Warning: 0%
    Cooldown: None
@@ -53,7 +53,7 @@
    Activate: If has Quaffle. 
    Counter: Block
    Effect: Reduces strength by 3%.  
-   Success Rate: `(Accuracy * 0.4) + (Handling * 0.3) + (Strength * 0.2) + (Agility * 0.1) + (Morale * 0.05)`
+   Success Rate: `score_chance * (Accuracy * 0.4) + (Handling * 0.3) + (Strength * 0.2) + (Agility * 0.1) + (Morale * 0.05)`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -63,7 +63,7 @@
    Activate: If has Quaffle. 
    Counter: None 
    Effect: Decreases strength and defense by 7%.  
-   Success Rate: `(Accuracy * 0.1) + (Handling * 0.05) + (Strength * 0.1) + (Agility * 0.1) + (Morale * 0.1)`
+   Success Rate: `score_chance * (Accuracy * 0.1) + (Handling * 0.05) + (Strength * 0.1) + (Agility * 0.1) + (Morale * 0.1)`
    Chance of Warning: 0%
    Cooldown: 2 Actions
 
