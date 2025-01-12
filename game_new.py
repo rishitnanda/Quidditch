@@ -12,8 +12,117 @@ users = {
         "password": generate_password_hash("refereepass"),
         "role": "referee"
     },
-    **{f"player{i}": {"password": generate_password_hash(f"player{i}pass"), "role": role} for i, role in enumerate(
-        ["chaser", "chaser", "chaser", "keeper", "beater", "beater", "seeker"] * 4, start=1)
+    "player1": {
+        "password": generate_password_hash("player1pass"),
+        "role": "chaser"
+    },
+    "player2": {
+        "password": generate_password_hash("player2pass"),
+        "role": "chaser"
+    },
+    "player3": {
+        "password": generate_password_hash("player3pass"),
+        "role": "chaser"
+    },
+    "player4": {
+        "password": generate_password_hash("player4pass"),
+        "role": "keeper"
+    },
+    "player5": {
+        "password": generate_password_hash("player5pass"),
+        "role": "beater"
+    },
+    "player6": {
+        "password": generate_password_hash("player6pass"),
+        "role": "beater"
+    },
+    "player7": {
+        "password": generate_password_hash("player7pass"),
+        "role": "seeker"
+    },
+    "player8": {
+        "password": generate_password_hash("player8pass"),
+        "role": "chaser"
+    },
+    "player9": {
+        "password": generate_password_hash("player9pass"),
+        "role": "chaser"
+    },
+    "player10": {
+        "password": generate_password_hash("player10pass"),
+        "role": "chaser"
+    },
+    "player11": {
+        "password": generate_password_hash("player11pass"),
+        "role": "keeper"
+    },
+    "player12": {
+        "password": generate_password_hash("player12pass"),
+        "role": "beater"
+    },
+    "player13": {
+        "password": generate_password_hash("player13pass"),
+        "role": "beater"
+    },
+    "player14": {
+        "password": generate_password_hash("player14pass"),
+        "role": "seeker"
+    },
+    "player15": {
+        "password": generate_password_hash("player15pass"),
+        "role": "chaser"
+    },
+    "player16": {
+        "password": generate_password_hash("player16pass"),
+        "role": "chaser"
+    },
+    "player17": {
+        "password": generate_password_hash("player17pass"),
+        "role": "chaser"
+    },
+    "player18": {
+        "password": generate_password_hash("player18pass"),
+        "role": "keeper"
+    },
+    "player19": {
+        "password": generate_password_hash("player19pass"),
+        "role": "beater"
+    },
+    "player20": {
+        "password": generate_password_hash("player20pass"),
+        "role": "beater"
+    },
+    "player21": {
+        "password": generate_password_hash("player21pass"),
+        "role": "seeker"
+    },
+    "player22": {
+        "password": generate_password_hash("player22pass"),
+        "role": "chaser"
+    },
+    "player23": {
+        "password": generate_password_hash("player23pass"),
+        "role": "chaser"
+    },
+    "player24": {
+        "password": generate_password_hash("player24pass"),
+        "role": "chaser"
+    },
+    "player25": {
+        "password": generate_password_hash("player25pass"),
+        "role": "keeper"
+    },
+    "player26": {
+        "password": generate_password_hash("player26pass"),
+        "role": "beater"
+    },
+    "player27": {
+        "password": generate_password_hash("player27pass"),
+        "role": "beater"
+    },
+    "player28": {
+        "password": generate_password_hash("player28pass"),
+        "role": "seeker"
     }
 }
 
