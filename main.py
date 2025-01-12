@@ -602,6 +602,7 @@ def download_chat():
 
 @app.route("/send_message", methods=["POST"])
 def send_message():
+    global quaffle_possession, snitch_caught, snitch_spot, bludger_approach, wounded, injured, game_started, chat_history, chat_file, selected_teams, score_chance
     if session["username"] != "referee":
         if "username" not in session or session["username"] not in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players']:
             return redirect(url_for("dashboard"))
