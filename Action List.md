@@ -150,7 +150,7 @@
 ---
 
  Seeker Actions:
-1. Seek: Attempt to capture the Snitch. 
+1. Dive: Attempt to capture the Snitch. 
    Activate: If snitch spotted.
    Counter: Dodge Bludger
    Effect: Reduces defense by 10%. Increase chance of losing sight of snitch by 5%.
@@ -159,7 +159,7 @@
    Cooldown: None
 
    - Success: "{player} plunges forward with impressive speed and has caught the snitch. Game Over! {winning team} wins by {score}"
-   - Failure: "{player} dives, but just as they near the Snitch, it flits out of reach."
+   - Failure: "{player} dives, but just as they near the Snitch, it flies out of reach."
 
 2. Dodge Bludger: Evade an incoming bludger. 
    Activate: After Beat Bludger, Double Hit.
@@ -195,7 +195,7 @@
    Cooldown: 1 Action
 
 
-   - Success: "The seeker hovers gracefully, taking a slow and calculated approach to the Snitch. Wait, is"
+   - Success: "The seeker hovers gracefully, taking a slow and calculated approach to the Snitch. Wait, is that the snitch?"
    - Failure: "The seeker’s slow hover drags on, leaving them vulnerable. The Snitch darts away in a burst of speed, and the seeker is left hovering aimlessly, losing valuable ground in the search."
 
 5. Wait: Wait for another action to be enabled.
