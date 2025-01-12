@@ -490,6 +490,7 @@ game_template_player = """
         <h3>Team 1 Score: {{ teams[selected_teams[0]]['score'] }}</h3>
         <h3>Team 2 Score: {{ teams[selected_teams[1]]['score'] }}</h3>
     {% endif %}
+    {% if game_started %}
         <p>Waiting for the referee to start the game...</p>
     {% endif %}
     <h3>Chat</h3>
