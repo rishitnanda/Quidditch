@@ -172,7 +172,7 @@ game_template_player = """
             <p>{{ message }}</p>
         {% endfor %}
     </div>
-    {% if role != 'spectator' %}
+    {% if role != 'spectator' and session['username'] in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players'] %}
     <form action="/send_message" method="post">
         <input type="text" name="message" placeholder="Enter your message" required style="width: 90%;">
         <button type="submit">Send</button>
@@ -273,7 +273,7 @@ def action():
 
 @app.route("/send_message", methods=["POST"])
 def send_message():
-    if "username" not in session:
+    if "username" not in session or session["username"] not in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players']:
         return redirect(url_for("dashboard"))
 
     message = request.form.get("message")
@@ -294,8 +294,6 @@ def get_chat():
     return jsonify({"chat_history": chat_history})
 
 @app.route("/select_teams", methods=["POST"])
-@app.route("/select_teams", methods=["POST"])
-
 def select_teams():
     if "username" in session and session["username"] == "referee":
         team1 = request.form.get("team1")
