@@ -707,6 +707,9 @@ def send_message():
                             chat_history.append(f"{session['username']} lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, a flawless display of precision and strength.")
                             users.get(session['username'])["skills"]["strength"] * 0.97
                             quaffle_possession = "Goal" + teams.get(users.get(session['username'])['team'])['players'][-4]
+                        else:
+                            chat_history.append(f"{session['username']} takes a shot but misses the hoop by a hair's breadth. The Quaffle ricochets off the goalpost and is now up for grabs.")
+                            quaffle_possession = None
 
                 elif command[0][1:] == "Dunk" and session['username'] not in wounded and session['username'] not in injured:
                     if session['username'] == quaffle_possession:
