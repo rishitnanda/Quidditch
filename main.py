@@ -725,7 +725,8 @@ def send_message():
                         if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1] and users.get(session['username'])['team'] != users.get(command[-1])['team']:
                             snatch_event = True
                             chat_history.append(f"{session['username']} approaches {quaffle_possession} from behind in an attempt to claim the ball.")
-                            snatching.append(session['username'], quaffle_possession)
+                            snatching.append(session['username'])
+                            snatching.append(quaffle_possession)
 
                 elif command[0][1:] == "Wait":
                     users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
