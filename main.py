@@ -15,6 +15,7 @@ users = {
     "player1": {
         "password": generate_password_hash("player1pass"),
         "role": "chaser",
+        "team": "team_1",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -27,6 +28,7 @@ users = {
     "player2": {
         "password": generate_password_hash("player2pass"),
         "role": "chaser",
+        "team": "team_1",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -39,6 +41,7 @@ users = {
     "player3": {
         "password": generate_password_hash("player3pass"),
         "role": "chaser",
+        "team": "team_1",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -51,6 +54,7 @@ users = {
     "player4": {
         "password": generate_password_hash("player4pass"),
         "role": "keeper",
+        "team": "team_1",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -63,6 +67,7 @@ users = {
     "player5": {
         "password": generate_password_hash("player5pass"),
         "role": "beater",
+        "team": "team_1",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -75,6 +80,7 @@ users = {
     "player6": {
         "password": generate_password_hash("player6pass"),
         "role": "beater",
+        "team": "team_1",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -87,6 +93,7 @@ users = {
     "player7": {
         "password": generate_password_hash("player7pass"),
         "role": "seeker",
+        "team": "team_1",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -99,6 +106,7 @@ users = {
     "player8": {
         "password": generate_password_hash("player8pass"),
         "role": "chaser",
+        "team": "team_2",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -111,6 +119,7 @@ users = {
     "player9": {
         "password": generate_password_hash("player9pass"),
         "role": "chaser",
+        "team": "team_2",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -123,6 +132,7 @@ users = {
     "player10": {
         "password": generate_password_hash("player10pass"),
         "role": "chaser",
+        "team": "team_2",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -135,6 +145,7 @@ users = {
     "player11": {
         "password": generate_password_hash("player11pass"),
         "role": "keeper",
+        "team": "team_2",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -147,6 +158,7 @@ users = {
     "player12": {
         "password": generate_password_hash("player12pass"),
         "role": "beater",
+        "team": "team_2",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -159,6 +171,7 @@ users = {
     "player13": {
         "password": generate_password_hash("player13pass"),
         "role": "beater",
+        "team": "team_2",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -171,6 +184,7 @@ users = {
     "player14": {
         "password": generate_password_hash("player14pass"),
         "role": "seeker",
+        "team": "team_2",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -183,6 +197,7 @@ users = {
     "player15": {
         "password": generate_password_hash("player15pass"),
         "role": "chaser",
+        "team": "team_3",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -195,6 +210,7 @@ users = {
     "player16": {
         "password": generate_password_hash("player16pass"),
         "role": "chaser",
+        "team": "team_3",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -207,6 +223,7 @@ users = {
     "player17": {
         "password": generate_password_hash("player17pass"),
         "role": "chaser",
+        "team": "team_3",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -219,6 +236,7 @@ users = {
     "player18": {
         "password": generate_password_hash("player18pass"),
         "role": "keeper",
+        "team": "team_3",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -231,6 +249,7 @@ users = {
     "player19": {
         "password": generate_password_hash("player19pass"),
         "role": "beater",
+        "team": "team_3",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -243,6 +262,7 @@ users = {
     "player20": {
         "password": generate_password_hash("player20pass"),
         "role": "beater",
+        "team": "team_3",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -255,6 +275,7 @@ users = {
     "player21": {
         "password": generate_password_hash("player21pass"),
         "role": "seeker",
+        "team": "team_3",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -267,6 +288,7 @@ users = {
     "player22": {
         "password": generate_password_hash("player22pass"),
         "role": "chaser",
+        "team": "team_4",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -279,6 +301,7 @@ users = {
     "player23": {
         "password": generate_password_hash("player23pass"),
         "role": "chaser",
+        "team": "team_4",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -291,6 +314,7 @@ users = {
     "player24": {
         "password": generate_password_hash("player24pass"),
         "role": "chaser",
+        "team": "team_4",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -303,6 +327,7 @@ users = {
     "player25": {
         "password": generate_password_hash("player25pass"),
         "role": "keeper",
+        "team": "team_4",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -315,6 +340,7 @@ users = {
     "player26": {
         "password": generate_password_hash("player26pass"),
         "role": "beater",
+        "team": "team_4",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -327,6 +353,7 @@ users = {
     "player27": {
         "password": generate_password_hash("player27pass"),
         "role": "beater",
+        "team": "team_4",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -339,6 +366,7 @@ users = {
     "player28": {
         "password": generate_password_hash("player28pass"),
         "role": "seeker",
+        "team": "team_4",
         "skills": {
             "accuracy": 0.1,
             "handling": 0.1,
@@ -634,11 +662,14 @@ def send_message():
                         chat_history.append(f"A well-timed bludger strikes {session['username']} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
                         users.get(session['username'])["skills"]["agility"] *= 0.9
                         users.get(session['username'])["skills"]["handling"] *= 0.9
+                        if quaffle_possession == session['username']:
+                            quaffle_possession = None
+                            chat_history.append(f"{session['username']} loses possession of the Quaffle which is now up for grabs.")
                     dodge.remove(session['username'])
 
             else:
                 if command[0][1:] == "Namecall":
-                    if teams.get(session['username']) != teams.get(command[-1]):
+                    if users.get(session['username'])['team'] != users.get(command[-1])['team']:
                         if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
                             (users.get(command[-1])["skills"]["morale"]) *= 0.95
                             if random.uniform(0,100)/100 < 0.2:
@@ -652,7 +683,7 @@ def send_message():
                                 chat_history.append(f"{command[-1]} swoops past {session['username']}.")
 
                 elif command[0][1:] == "Pass":
-                    if session['username'] == quaffle_possession and teams.get(session['username']) == teams.get(command[-1]):
+                    if session['username'] == quaffle_possession and users.get(session['username'])['team'] == users.get(command[-1])['team']:
                         score_chance *= 1.05
                         chat_history.append(f"{session['username']} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
                         quaffle_possession = command[-1]
@@ -662,7 +693,7 @@ def send_message():
                         if random.uniform(0,100)/100 < score_chance * ((users.get(session['username'])["skills"]["accuracy"] * 0.4) + (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1) + (users.get(session['username'])["skills"]["morale"] * 0.05)):
                             chat_history.append(f"{session['username']} lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, a flawless display of precision and strength.")
                             users.get(session['username'])["skills"]["strength"] * 0.97
-                            quaffle_possession = "Goal" + teams.get(session['username'])[-4]
+                            quaffle_possession = "Goal" + users.get(session['username'])['team'][-4]
 
                 elif command[0][1:] == "Dunk":
                     if session['username'] == quaffle_possession:
@@ -672,14 +703,14 @@ def send_message():
                             chat_history.append(f"{session['username']} attempts a dunk but is blocked by the keeper who now has the quaffle.")
                         users.get(session['username'])["skills"]["strength"] * 0.93
                         users.get(session['username'])["skills"]["defense"] * 0.93
-                        quaffle_possession = teams.get(session['username'])[-4]
+                        quaffle_possession = users.get(session['username'])['team'][-4]
 
                 elif command[0][1:] == "Snatch":
                     if quaffle_possession == None:
                         quaffle_possession = session['username']
                         chat_history.append(f"{session['username']} has taken possession of the Quaffle.")
                     else:
-                        if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1] and teams.get(session['username']) != teams.get(command[-1]):
+                        if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1] and users.get(session['username'])['team'] != users.get(command[-1])['team']:
                             snatch_event = True
                             chat_history.appened(f"{session['username']} approaches {quaffle_possession} from behind in an attempt to claim the ball.")
                             snatching.append(session['username'], quaffle_possession)
@@ -689,7 +720,7 @@ def send_message():
 
         if users.get(session['username'])["role"] == 'beater':
             if command[0][1:] == "Namecall" and session['username'] not in dodge:
-                if teams.get(session['username']) != teams.get(command[-1]):
+                if users.get(session['username'])['team'] != users.get(command[-1])['team']:
                     if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
                         (users.get(command[-1])["skills"]["morale"]) *= 0.95
                         if random.uniform(0,100)/100 < 0.2:
@@ -748,7 +779,7 @@ def send_message():
             else:
                 if command[0][1:] == "Dive" and snitch_spot == True:
                     if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.1) + ((users.get(session['username'])["skills"]["accuracy"]) * 0.1):
-                        teams.get(session['username'])["score"] += 150
+                        users.get(session['username'])['team']["score"] += 150
                         score1 = teams.get(selected_teams[0])["score"]
                         score2 = teams.get(selected_teams[1])["score"]
                         winner = selected_teams[0] if score1 > score2 else selected_teams[1]
@@ -760,7 +791,7 @@ def send_message():
                             snitch_spot = False
 
                 elif command[0][1:] == "Namecall":
-                    if teams.get(session['username']) != teams.get(command[-1]):
+                    if users.get(session['username'])['team'] != users.get(command[-1])['team']:
                         if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
                             (users.get(command[-1])["skills"]["morale"]) *= 0.95
                             if random.uniform(0,100)/100 < 0.2:
@@ -782,7 +813,7 @@ def send_message():
                         chat_history.append(f"{session['username']}’s slow hover drags on, leaving them vulnerable.")
                     
                     if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.1) + ((users.get(session['username'])["skills"]["accuracy"]) * 0.1):
-                        teams.get(session['username'])["score"] += 150
+                        users.get(session['username'])['team']["score"] += 150
                         score1 = teams.get(selected_teams[0])["score"]
                         score2 = teams.get(selected_teams[1])["score"]
                         winner = selected_teams[0] if score1 > score2 else selected_teams[1]
@@ -805,10 +836,20 @@ def send_message():
                         chat_history.append(f"A well-timed bludger strikes {session['username']} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
                         users.get(session['username'])["skills"]["agility"] *= 0.9
                         users.get(session['username'])["skills"]["handling"] *= 0.9
+                        if quaffle_possession == session['username']:
+                            quaffle_possession = None
+                            chat_history.append(f"{session['username']} loses possession of the Quaffle which is now up for grabs.")
                     dodge.remove(session['username'])
+
+            elif quaffle_possession == session['username']:
+                if command[0][1:] == "Pass":
+                    if users.get(session['username'])['team'] == users.get(command[-1])['team']:
+                        chat_history.append(f"{session['username']} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
+                        quaffle_possession = command[-1]
+
             else:
                 if command[0][1:] == "Namecall":
-                    if teams.get(session['username']) != teams.get(command[-1]):
+                    if users.get(session['username'])['team'] != users.get(command[-1])['team']:
                         if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
                             (users.get(command[-1])["skills"]["morale"]) *= 0.95
                             if random.uniform(0,100)/100 < 0.2:
@@ -823,7 +864,7 @@ def send_message():
                                 
                 elif command[0][1:] == "Defend":
                     if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.5) + ((users.get(session['username'])["skills"]["morale"]) * 0.5):
-                        for i in teams.get(session['username'])['players']:
+                        for i in users.get(session['username'])['team']['players']:
                             users.get(i)["skills"]["defense"] *= 1.05
                         chat_history.append(f"{session['username']} braces themselves, their defense bolstered by a surge of determination.")
 
@@ -832,9 +873,9 @@ def send_message():
                         chat_history.append(f"{session['username']} leaps into action, blocking the incoming Quaffle with a powerful save. Their strength and reflexes were unmatched, preventing a goal.")
                     else:
                         chat_history.append(f"{session['username']} attempts to block the Quaffle but fails to stop the goal.")
-                        r = selected_teams[0] if selected_teams[0] != teams.get(session['username']) else selected_teams[1]
-                        s = selected_teams[0] if selected_teams[0] == teams.get(session['username']) else selected_teams[1]
-                        teams.get(session['username'])["score"] += 10
+                        r = selected_teams[0] if selected_teams[0] != teams.get(users.get(session['username'])['team']) else selected_teams[1]
+                        s = selected_teams[0] if selected_teams[0] == teams.get(users.get(session['username'])['team']) else selected_teams[1]
+                        users.get(session['username'])['team']["score"] += 10
                         chat_history.append(f"Goal! 10 points to {s}.")
                         score_chance = 1
                     quaffle_possession = session['username']
