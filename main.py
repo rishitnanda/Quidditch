@@ -618,16 +618,18 @@ def send_message():
             if command[1] == "Namecall":
                 pass
             if command[1] == "Pass":
-                if users.get(session['username']).split()[-1] == quaffle_possession:
+                if session['username'].split()[-1] == quaffle_possession:
                     score_chance *= 1.05
-                    chat_history.append(f"session['username'].split()[-1] releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. command[-1] catches it effortlessly, continuing the offensive without missing a beat.")
+                    chat_history.append(f"{session['username'].split()[-1]} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
                     quaffle_possession = command[-1]
             if command[1] == "Shoot":
                 pass
             if command[1] == "Dunk":
                 pass
             if command[1] == "Snatch":
-                pass
+                if quaffle_possession == None:
+                    quaffle_possession = session['username'].split()[-1]
+                    chat_history.append(f"{session['username']} has taken possession of the Quaffle.")
             if command[1] == "Wait":
                 pass
         if users.get(session['username'])["role"] == 'beater':
