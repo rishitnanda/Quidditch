@@ -485,20 +485,6 @@ game_template_player = """
         <h3>Team 1 Score: {{ teams[selected_teams[0]]['score'] }}</h3>
         <h3>Team 2 Score: {{ teams[selected_teams[1]]['score'] }}</h3>
     {% endif %}
-    {% if game_started %}
-        <form action="/action" method="post">
-            {% if role == 'chaser' %}
-                <button name="action" value="catch_quaffle">Catch Quaffle</button>
-                <button name="action" value="pass_quaffle">Pass Quaffle</button>
-            {% elif role == 'keeper' %}
-                <button name="action" value="block_goal">Block Goal</button>
-            {% elif role == 'beater' %}
-                <button name="action" value="hit_bludger">Hit Bludger</button>
-            {% elif role == 'seeker' %}
-                <button name="action" value="catch_snitch">Catch Snitch</button>
-            {% endif %}
-        </form>
-    {% else %}
         <p>Waiting for the referee to start the game...</p>
     {% endif %}
     <h3>Chat</h3>
@@ -609,25 +595,71 @@ def download_chat():
         return send_file(chat_file, as_attachment=True)
     return redirect(url_for("dashboard"))
 
-@app.route("/action", methods=["POST"])
-def action():
-    if "username" not in session or not game_started:
-        return redirect(url_for("dashboard"))
-
-    action = request.form.get("action")
-
-    chat_history.append(f"{session['username']} performed action: {action}")
-
-    return redirect(url_for("dashboard"))
-
 @app.route("/send_message", methods=["POST"])
 def send_message():
-    print(users.get(session['username'])["role"])
     if session["username"] != "referee":
         if "username" not in session or session["username"] not in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players']:
             return redirect(url_for("dashboard"))
     
     message = request.form.get("message")
+    command = message.split()
+
+    if command[0] == "/":
+        if users.get(session['username'])["role"] == 'chaser':
+            if command[1] == "Dodge_Player":
+                pass
+            if command[1] == "Dodge_Bludger":
+                pass
+            if command[1] == "Namecall":
+                pass
+            if command[1] == "Pass":
+                pass
+            if command[1] == "Shoot":
+                pass
+            if command[1] == "Dunk":
+                pass
+            if command[1] == "Snatch":
+                pass
+            if command[1] == "Wait":
+                pass
+        if users.get(session['username'])["role"] == 'beater':
+            if command[1] == "Namecall":
+                pass
+            if command[1] == "Defend":
+                pass
+            if command[1] == "Beat_Bludger":
+                pass
+            if command[1] == "Double_Hit":
+                pass
+            if command[1] == "Wait":
+                pass
+        if users.get(session['username'])["role"] == 'seeker':
+            if command[1] == "Seek":
+                pass
+            if command[1] == "Dodge_Bludger":
+                pass
+            if command[1] == "Namecall":
+                pass
+            if command[1] == "Slow_Hover":
+                pass
+            if command[1] == "Wait":
+                pass
+        if users.get(session['username'])["role"] == 'keeper':
+            if command[1] == "Dodge_Bludger":
+                pass
+            if command[1] == "Namecall":
+                pass
+            if command[1] == "Defend":
+                pass
+            if command[1] == "Block":
+                pass
+            if command[1] == "Wait":
+                pass
+            if command[1] == "Slow_Hower":
+                pass
+            if command[1] == "Pass":
+                pass
+
 
     chat_history.append(f"{session['username']}: {message}")
     save_chat_history()
