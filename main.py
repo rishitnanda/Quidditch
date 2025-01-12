@@ -614,14 +614,21 @@ def send_message():
 
     if command[0][0] == "/":
         if users.get(session['username'])["role"] == 'chaser':
-            if command[0][1:] == "Dodge_Player":
-                pass
+            if snatching[1] == session['username']:
+                if command[0][1:] == "Dodge_Player":
+                    if random.uniform(0,100) < ((users.get(session['username'])["skills"]["handling"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["agility"]))/3:
+                        chat_history.append(f"With a swift sidestep, {session['username']} skillfully evades {snatching[0]}’s pursuit, gracefully maintaining control of the Quaffle. Their handling proves exceptional as they regain their momentum.")
+                    else:
+                        chat_history.append(f"{session['username']} attempts to dodge but fails to shake off {snatching[0]}, their movements too predictable. {snatching[0]} closes in, forcing {session['username']} to lose possession of the Quaffle.")
+                        quaffle_possession = snatching[0]
+                    snatch_event = False
+                    snatching = []
             if command[0][1:] == "Dodge_Bludger":
                 pass
             if command[0][1:] == "Namecall":
                 pass
             if command[0][1:] == "Pass":
-                if session['username'] == quaffle_possession:
+                if session['username'] == quaffle_possession and teams.get(session['username']) == teams.get(command[-1]):
                     score_chance *= 1.05
                     chat_history.append(f"{session['username']} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
                     quaffle_possession = command[-1]
@@ -634,13 +641,10 @@ def send_message():
                     quaffle_possession = session['username']
                     chat_history.append(f"{session['username']} has taken possession of the Quaffle.")
                 else:
-                    if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1]:
-                        #if random.uniform(0,100) < (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1):
-                        if True:
-                            snatch_event = True
-                            print(type(users.get(command[-1])))
-                            print(type(users.get(command[-1])["skills"]))
-                            print(type(users.get(command[-1])["skills"]["strength"]))
+                    if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1] and teams.get(session['username']) != teams.get(command[-1]):
+                        snatch_event = True
+                        chat_history.appened(f"{session['username']} approaches {quaffle_possession} from behind in an attempt to claim the ball.")
+                        snatching.append(session['username'], quaffle_possession)
 
             if command[0][1:] == "Wait":
                 pass
