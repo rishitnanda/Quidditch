@@ -677,7 +677,7 @@ def send_message():
                         snatching.append(session['username'], quaffle_possession)
 
             if command[0][1:] == "Wait":
-                pass
+                users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
 
         if users.get(session['username'])["role"] == 'beater':
             if command[0][1:] == "Namecall":
