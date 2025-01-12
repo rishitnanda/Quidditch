@@ -13,12 +13,12 @@
    - Failure: "The pass is off target, sailing wide of the intended recipient. The opponent swiftly intercepts, turning the play around and giving their team a much-needed break."
 
 4. Shoot:
-   - Success: "The chaser lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, slipping past the keeper and into the goal, a flawless display of precision and strength."
+   - Success: "The chaser lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, a flawless display of precision and strength."
    - Failure: "The chaser's shot is too rushed, lacking the finesse needed to break through the keeper’s defenses. The Quaffle misses the mark entirely, leaving their team to regroup for another attempt."
 
 5. Dunk:
    - Success: "In a stunning display of athleticism, the chaser leaps towards the hoop, executing a perfect dunk that leaves the crowd roaring. Their timing and power were immaculate, making the keeper's block impossible."
-   - Failure: "The chaser jumps to dunk, but the defender anticipates the move and blocks it just in time. Their strength wasn't enough, and they’re left disappointed as the Quaffle rebounds out of reach."
+   - Failure: "The chaser jumps to dunk, but the keeper anticipates the move and blocks it just in time. Their strength wasn't enough, and they’re left disappointed as the Quaffle rebounds out of reach."
 
 ---
 
@@ -70,9 +70,9 @@
 
  Keeper Actions:
 
-1. Dodge Player:
-   - Success: "The keeper expertly dodges the attacking player, maintaining perfect balance while swiftly moving into position. Their agility ensures they can continue guarding the goal with confidence."
-   - Failure: "The keeper is too slow to react, and the attacker easily bypasses them. The keeper’s defensive efforts are foiled as the opposing player nears the goal with an open shot."
+1. Dodge Bludger:
+   - Success: "The keeper expertly dodges the attacking bludger, maintaining perfect balance while swiftly moving into position. Their agility ensures they can continue guarding the goal with confidence."
+   - Failure: "The keeper is too slow to react, and the bludger hits them. The impact throws them off balance, leaving the goal momentarily unguarded as they struggle to recover."
 
 2. Namecall:
    - Success + Warn: "The keeper calls out an opponent with a well-placed taunt, causing their focus to waver. For a moment, the opponent hesitates, giving the keeper a valuable chance to block the shot."
