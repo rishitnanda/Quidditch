@@ -8,3 +8,6 @@ Number of successful passes increases chance of nearing goalpost.
 Pass increases chance of snatch.
 Every 3 warnings reduces 10 points.
 When chaser goes to keeper to score, chaser attempts to attack, then keeper tries to defend after which keeper passes ball to a chaser.
+Wound means wait for 1 turn.
+Injury means wait for 3 turns.
+When hit by bludger, quaffle is dropped. Can be picked.
