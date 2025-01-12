@@ -21,7 +21,7 @@
    Cooldown: None
 
    - Success: "{player} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback."
-   - Failure: "A well-timed bludger strikes {player} squarely, knocking them off course. Their handling falters as they struggle to regain their footing."
+   - Failure + No Effect: "A well-timed bludger strikes {player} squarely, knocking them off course. Their handling falters as they struggle to regain their footing."
    - Wounded:
    - Injured:
 
@@ -111,7 +111,7 @@
    Cooldown: None
 
    - Success: "{player} steps in front of {teammate} with impeccable timing, using their strength to block an incoming bludger. Their defensive play keeps the team safe and the offense in motion."
-   - Failure: "A well-timed bludger strikes {teammate} squarely, knocking them off course. Their handling falters as they struggle to regain their footing."
+   - Failure + No Effect: "A well-timed bludger strikes {teammate} squarely, knocking them off course. Their handling falters as they struggle to regain their footing."
    - Wounded:
    - Injured:
 
@@ -170,7 +170,7 @@
    Cooldown: None
 
    - Success: "{player} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback."
-   - Failure: "A well-timed bludger strikes {player} squarely, knocking them off course. Their handling falters as they struggle to regain their footing."
+   - Failure + No Effect: "A well-timed bludger strikes {player} squarely, knocking them off course. Their handling falters as they struggle to regain their footing."
    - Wounded:
    - Injured:
 
@@ -217,7 +217,7 @@
    Cooldown: None
 
    - Success: "{player} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback."
-   - Failure: "A well-timed bludger strikes {player} squarely, knocking them off course. Their handling falters as they struggle to regain their footing."
+   - Failure + No Effect: "A well-timed bludger strikes {player} squarely, knocking them off course. Their handling falters as they struggle to regain their footing."
    - Wounded:
    - Injured:
 

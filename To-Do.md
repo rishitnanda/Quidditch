@@ -1,5 +1,3 @@
-Auto-update chat for everyone who has logged in whenever anything appears in chat.
-Every character has a combination of 6 skillsets (accuracy, handling, defense, agility, strength, morale).
 Game end and declaration msg (Snitch caught, game won by).
 Commands for actions.
 Number of successful passes increases chance of nearing goalpost.

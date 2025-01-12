@@ -14,115 +14,339 @@ users = {
     },
     "player1": {
         "password": generate_password_hash("player1pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player2": {
         "password": generate_password_hash("player2pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player3": {
         "password": generate_password_hash("player3pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player4": {
         "password": generate_password_hash("player4pass"),
-        "role": "keeper"
+        "role": "keeper",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player5": {
         "password": generate_password_hash("player5pass"),
-        "role": "beater"
+        "role": "beater",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player6": {
         "password": generate_password_hash("player6pass"),
-        "role": "beater"
+        "role": "beater",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player7": {
         "password": generate_password_hash("player7pass"),
-        "role": "seeker"
+        "role": "seeker",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player8": {
         "password": generate_password_hash("player8pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player9": {
         "password": generate_password_hash("player9pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player10": {
         "password": generate_password_hash("player10pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player11": {
         "password": generate_password_hash("player11pass"),
-        "role": "keeper"
+        "role": "keeper",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player12": {
         "password": generate_password_hash("player12pass"),
-        "role": "beater"
+        "role": "beater",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player13": {
         "password": generate_password_hash("player13pass"),
-        "role": "beater"
+        "role": "beater",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player14": {
         "password": generate_password_hash("player14pass"),
-        "role": "seeker"
+        "role": "seeker",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player15": {
         "password": generate_password_hash("player15pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player16": {
         "password": generate_password_hash("player16pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player17": {
         "password": generate_password_hash("player17pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player18": {
         "password": generate_password_hash("player18pass"),
-        "role": "keeper"
+        "role": "keeper",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player19": {
         "password": generate_password_hash("player19pass"),
-        "role": "beater"
+        "role": "beater",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player20": {
         "password": generate_password_hash("player20pass"),
-        "role": "beater"
+        "role": "beater",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player21": {
         "password": generate_password_hash("player21pass"),
-        "role": "seeker"
+        "role": "seeker",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player22": {
         "password": generate_password_hash("player22pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player23": {
         "password": generate_password_hash("player23pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player24": {
         "password": generate_password_hash("player24pass"),
-        "role": "chaser"
+        "role": "chaser",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player25": {
         "password": generate_password_hash("player25pass"),
-        "role": "keeper"
+        "role": "keeper",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player26": {
         "password": generate_password_hash("player26pass"),
-        "role": "beater"
+        "role": "beater",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player27": {
         "password": generate_password_hash("player27pass"),
-        "role": "beater"
+        "role": "beater",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     },
     "player28": {
         "password": generate_password_hash("player28pass"),
-        "role": "seeker"
+        "role": "seeker",
+        "skills": {
+            "accuracy": 0.1,
+            "handling": 0.1,
+            "defense": 0.1,
+            "agility": 0.1,
+            "strength": 0.1,
+            "morale": 0.1,
+        }
     }
 }
 
@@ -224,6 +448,17 @@ game_template_referee = """
         <input type="text" name="message" placeholder="Enter your message" required style="width: 90%;">
         <button type="submit">Send</button>
     </form>
+    function updateChat() {
+        fetch('/get_chat')
+        .then(response => response.json())
+        .then(data => {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+        })
+        .catch(error => console.error('Error updating chat:', error));
+    }
+    setInterval(updateChat, 2000); // Update every 2 seconds
 </body>
 </html>
 """
@@ -287,6 +522,17 @@ game_template_player = """
         <button type="submit">Send</button>
     </form>
     {% endif %}
+    function updateChat() {
+        fetch('/get_chat')
+        .then(response => response.json())
+        .then(data => {
+            const chatBox = document.getElementById('chat-box');
+            chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
+            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+        })
+        .catch(error => console.error('Error updating chat:', error));
+    }
+    setInterval(updateChat, 2000); // Update every 2 seconds
 </body>
 </html>
 """
@@ -386,12 +632,11 @@ def send_message():
         if "username" not in session or session["username"] not in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players']:
             return redirect(url_for("dashboard"))
     
-    print(session["username"])
     message = request.form.get("message")
 
     chat_history.append(f"{session['username']}: {message}")
 
-    return redirect(url_for("dashboard"))
+    return jsonify(success=True)
 
 @app.route("/spectator", methods=["GET"])
 def spectator():
