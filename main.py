@@ -609,12 +609,9 @@ def send_message():
     
     message = request.form.get("message")
     command = message.split()
-    print(command)
 
     if command[0][0] == "/":
-        print(command)
         if users.get(session['username'])["role"] == 'chaser':
-            print(command)
             if command[0][1:] == "Dodge_Player":
                 pass
             if command[0][1:] == "Dodge_Bludger":
@@ -673,9 +670,8 @@ def send_message():
                 pass
             if command[0][1:] == "Pass":
                 pass
-
-
-    chat_history.append(f"{session['username']}: {message}")
+    else:
+        chat_history.append(f"{session['username']}: {message}")
 
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
         return jsonify({"success": True, "message": "Message sent."})
