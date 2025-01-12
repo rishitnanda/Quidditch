@@ -1,5 +1,3 @@
 Referee has selected team_1 and team_2 for the match.
 The Game has begun and the Chasers rush to get hold of the Quaffle.
-player1: hi
-player1: /snatch
 player1: /Snatch

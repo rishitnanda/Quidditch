@@ -609,8 +609,10 @@ def send_message():
     
     message = request.form.get("message")
     command = message.split()
+    print(command)
 
     if command[0] == "/":
+        print(command)
         if users.get(session['username'])["role"] == 'chaser':
             print(command)
             if command[1] == "Dodge_Player":
