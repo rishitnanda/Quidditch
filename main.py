@@ -718,6 +718,8 @@ def send_message():
                         
                         r = selected_teams[0] if selected_teams[0] != teams.get(users.get(session['username'])['team']) else selected_teams[1]
 
+                        print(r)
+
                         quaffle_possession = r['players'][-4]
 
                 elif command[0][1:] == "Snatch" and session['username'] not in wounded and session['username'] not in injured:
