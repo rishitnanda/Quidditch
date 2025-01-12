@@ -411,6 +411,19 @@ game_template_referee = """
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Referee Controls</title>
+    <script>
+        function updateChat() {
+            fetch('/get_chat')
+                .then(response => response.json())
+                .then(data => {
+                    const chatBox = document.getElementById('chat-box');
+                    chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
+                    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+                })
+                .catch(error => console.error('Error updating chat:', error));
+        }
+        setInterval(updateChat, 2000); // Update every 2 seconds
+    </script>
 </head>
 <body>
     <h1>Quidditch Game Referee Controls</h1>
@@ -448,17 +461,6 @@ game_template_referee = """
         <input type="text" name="message" placeholder="Enter your message" required style="width: 90%;">
         <button type="submit">Send</button>
     </form>
-    function updateChat() {
-        fetch('/get_chat')
-        .then(response => response.json())
-        .then(data => {
-            const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
-            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
-        })
-        .catch(error => console.error('Error updating chat:', error));
-    }
-    setInterval(updateChat, 2000); // Update every 2 seconds
 </body>
 </html>
 """
@@ -477,10 +479,13 @@ game_template_player = """
                 .then(data => {
                     const chatBox = document.getElementById('chat-box');
                     chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
-                });
+                    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+                })
+                .catch(error => console.error('Error updating chat:', error));
         }
-        setInterval(updateChat, 2000);
+        setInterval(updateChat, 2000); // Update every 2 seconds
     </script>
+
 </head>
 <body>
     {% if role != 'spectator' %}
@@ -522,17 +527,6 @@ game_template_player = """
         <button type="submit">Send</button>
     </form>
     {% endif %}
-    function updateChat() {
-        fetch('/get_chat')
-        .then(response => response.json())
-        .then(data => {
-            const chatBox = document.getElementById('chat-box');
-            chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
-            chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
-        })
-        .catch(error => console.error('Error updating chat:', error));
-    }
-    setInterval(updateChat, 2000); // Update every 2 seconds
 </body>
 </html>
 """
