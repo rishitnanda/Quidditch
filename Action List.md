@@ -94,7 +94,7 @@
    Injury Rate: 3%
    Wound Rate: 1%
    Chance of Warning: 0%
-   Cooldown: None
+   Cooldown: 1 Action
 
 4. Double Hit: Beat two bludgers in rapid succession.
    Counter: Dodge Bludger
@@ -115,7 +115,7 @@
 ---
 
  Seeker Actions:
-1. Dive: Attempt to capture the Snitch. 
+1. Seek: Attempt to capture the Snitch. 
    Activate: If snitch spotted.
    Counter: Dodge Bludger
    Effect: Reduces defense by 10%.  
@@ -139,6 +139,8 @@
    Cooldown: 1 Action
 
 4. Slow Hover: Hover slowly to anticipate the Snitch's movements.  
+   Activate: If snitch not spotted.
+   Counter: None
    Effect: Increases agility by 10%, reduces speed by 10%. Increases chance of spotting snitch by 2%.
    Success Rate: `(Agility + Handling) / 2`
    Chance of Warning: 0%
@@ -156,6 +158,7 @@
  Keeper Actions:
 1. Dodge Bludger: Evade a bludger.  
    Activate: After Beat Bludger, Double Hit.
+   Counter: None
    Effect: Reduces handling by 10%. 
    Success Rate: `(Handling + Defense - Agility) / 2`
    Chance of Warning: 0%
@@ -169,12 +172,15 @@
    Cooldown: 1 Action
 
 3. Defend: Set up a defensive strategy.  
+   Counter: None
    Effect: Increases defense for the team by 5%.  
    Success Rate: `(Agility + Morale) / 2`
    Chance of Warning: 0%
    Cooldown: 2 Actions.
 
-4. Block: Block a shot at the goalposts.  
+4. Block: Block a shot at the goalposts. 
+   Activate: After Shoot by Opponent.
+   Counter: None 
    Effect: Increases defense by 15%.  
    Success Rate: `(Strength + Morale + Defense) / 3`
    Chance of Warning: 0%
@@ -188,6 +194,7 @@
    Cooldown: None
 
 6. Slow Hover: Hover slowly in front of goal posts.  
+   Counter: None
    Effect: Increases defense by 10%, increase strength by 10%.
    Success Rate: `(Agility + Handling) / 2`
    Chance of Warning: 0%
