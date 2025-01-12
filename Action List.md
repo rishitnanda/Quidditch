@@ -118,7 +118,7 @@
 3. Beat Bludger: Hit a bludger towards an opponent.
    Counter: Dodge Bludger, Defend, Beat Bludger
    Effect: Reduces opponent’s handling by 5% (if Success).
-   Success Rate: `(accuracy + handling - agility) / 2`
+   Success Rate: `(accuracy + handling - agility) / 3`
    Wound Rate: 3%
    Injury Rate: 1%
    Chance of Warning: 0%
