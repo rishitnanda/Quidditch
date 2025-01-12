@@ -628,12 +628,8 @@ def send_message():
     message = request.form.get("message")
 
     chat_history.append(f"{session['username']}: {message}")
-    save_chat_history()
 
-    if request.headers.get("X-Requested-With") == "XMLHttpRequest":
-        return jsonify({"success": True, "message": "Message sent."})
-
-    return redirect(url_for("dashboard"))
+    return jsonify(success=True)
 
 @app.route("/spectator", methods=["GET"])
 def spectator():
