@@ -278,6 +278,7 @@ def send_message():
 
     message = request.form.get("message")
 
+    print(f"{session['username']}: {message}")
     chat_history.append(f"{session['username']}: {message}")
 
     return redirect(url_for("dashboard"))
