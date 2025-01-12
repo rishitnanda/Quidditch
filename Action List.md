@@ -142,7 +142,7 @@
    Effect: Increases agility by 10%, reduces speed by 10%. Increases chance of spotting snitch by 2%.
    Success Rate: `(Agility + Handling) / 2`
    Chance of Warning: 0%
-   Cooldown: None
+   Cooldown: 1 Action
 
 5. Wait: Wait for another action to be enabled.
    Counter: None
@@ -186,3 +186,9 @@
    Success Rate: `100%`
    Chance of Warning: 0%
    Cooldown: None
+
+6. Slow Hover: Hover slowly in front of goal posts.  
+   Effect: Increases defense by 10%, increase strength by 10%.
+   Success Rate: `(Agility + Handling) / 2`
+   Chance of Warning: 0%
+   Cooldown: 2 Actions
