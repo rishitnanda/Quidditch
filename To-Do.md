@@ -5,3 +5,4 @@ Wound means wait for 1 turn.
 Injury means wait for 3 turns.
 When hit by bludger, quaffle is dropped. Can be picked.
 Cooldowns.
+teams.get & selected_teams

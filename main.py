@@ -662,7 +662,7 @@ def send_message():
                         if random.uniform(0,100)/100 < score_chance * ((users.get(session['username'])["skills"]["accuracy"] * 0.4) + (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1) + (users.get(session['username'])["skills"]["morale"] * 0.05)):
                             chat_history.append(f"{session['username']} lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, a flawless display of precision and strength.")
                             users.get(session['username'])["skills"]["strength"] * 0.97
-                            quaffle_possession = "Goal"
+                            quaffle_possession = "Goal" + teams.get(session['username'])[-4]
 
                 elif command[0][1:] == "Dunk":
                     if session['username'] == quaffle_possession:
@@ -752,7 +752,7 @@ def send_message():
                         score1 = teams.get(selected_teams[0])["score"]
                         score2 = teams.get(selected_teams[1])["score"]
                         winner = selected_teams[0] if score1 > score2 else selected_teams[1]
-                        chat_history.append(f"{session[username]} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
+                        chat_history.append(f"{session['username']} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
                         snitch_caught = True
                     else:
                         chat_history.append(f"{session['username']} dives for the snitch but misses it.")
@@ -786,7 +786,7 @@ def send_message():
                         score1 = teams.get(selected_teams[0])["score"]
                         score2 = teams.get(selected_teams[1])["score"]
                         winner = selected_teams[0] if score1 > score2 else selected_teams[1]
-                        chat_history.append(f"{session[username]} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
+                        chat_history.append(f"{session['username']} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
                         snitch_caught = True
                     else:
                         chat_history.append(f"{session['username']} dives for the snitch but misses it.")
@@ -827,8 +827,17 @@ def send_message():
                             users.get(i)["skills"]["defense"] *= 1.05
                         chat_history.append(f"{session['username']} braces themselves, their defense bolstered by a surge of determination.")
 
-                elif command[0][1:] == "Block":
-                    pass
+                elif command[0][1:] == "Block" and quaffle_possession == "Goal" + session['username']:
+                    if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["strength"]) + (users.get(session['username'])["skills"]["morale"]) + (users.get(session['username'])["skills"]["defense"]))/3:
+                        chat_history.append(f"{session['username']} leaps into action, blocking the incoming Quaffle with a powerful save. Their strength and reflexes were unmatched, preventing a goal.")
+                    else:
+                        chat_history.append(f"{session['username']} attempts to block the Quaffle but fails to stop the goal.")
+                        r = selected_teams[0] if selected_teams[0] != teams.get(session['username']) else selected_teams[1]
+                        s = selected_teams[0] if selected_teams[0] == teams.get(session['username']) else selected_teams[1]
+                        teams.get(session['username'])["score"] += 10
+                        chat_history.append(f"Goal! 10 points to {s}.")
+                        score_chance = 1
+                    quaffle_possession = session['username']
 
                 elif command[0][1:] == "Slow_Hower":
                     chat_history.append(f"{session['username']} hovers in front of the goal hoops watching the quaffle carefully.")
