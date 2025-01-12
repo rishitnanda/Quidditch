@@ -369,6 +369,8 @@ teams = {
         "score": 0
     }
 }
+
+global quaffle_possession, snitch_caught, snitch_spot, bludger_approach, wounded, injured, game_started, chat_history, chat_file, selected_teams, score_chance
 quaffle_possession = None
 snitch_caught = False
 snitch_spot = False
