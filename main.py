@@ -636,7 +636,7 @@ def send_message():
     if session["username"] != "referee":
         if "username" not in session or session["username"] not in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players']:
             return redirect(url_for("dashboard"))
-    
+    print(quaffle_possession)
     message = request.form.get("message")
     command = message.split()
 
