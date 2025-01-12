@@ -490,9 +490,6 @@ game_template_player = """
         <h3>Team 1 Score: {{ teams[selected_teams[0]]['score'] }}</h3>
         <h3>Team 2 Score: {{ teams[selected_teams[1]]['score'] }}</h3>
     {% endif %}
-    {% if game_started %}
-        <p>Waiting for the referee to start the game...</p>
-    {% endif %}
     <h3>Chat</h3>
     <div id="chat-box" style="border: 1px solid #000; padding: 10px; height: 300px; overflow-y: scroll;">
         {% for message in chat_history %}
@@ -611,72 +608,71 @@ def send_message():
     command = message.split()
     print(command)
 
-    if command[0] == "/":
+    if command[0][0] == "/":
         print(command)
         if users.get(session['username'])["role"] == 'chaser':
             print(command)
-            if command[1] == "Dodge_Player":
+            if command[0][1:] == "Dodge_Player":
                 pass
-            if command[1] == "Dodge_Bludger":
+            if command[0][1:] == "Dodge_Bludger":
                 pass
-            if command[1] == "Namecall":
+            if command[0][1:] == "Namecall":
                 pass
-            if command[1] == "Pass":
+            if command[0][1:] == "Pass":
                 if session['username'].split()[-1] == quaffle_possession:
                     score_chance *= 1.05
                     chat_history.append(f"{session['username'].split()[-1]} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
                     quaffle_possession = command[-1]
-            if command[1] == "Shoot":
+            if command[0][1:] == "Shoot":
                 pass
-            if command[1] == "Dunk":
+            if command[0][1:] == "Dunk":
                 pass
-            if command[1] == "Snatch":
+            if command[0][1:] == "Snatch":
                 if quaffle_possession == None:
                     quaffle_possession = session['username'].split()[-1]
                     chat_history.append(f"{session['username']} has taken possession of the Quaffle.")
-            if command[1] == "Wait":
+            if command[0][1:] == "Wait":
                 pass
         if users.get(session['username'])["role"] == 'beater':
-            if command[1] == "Namecall":
+            if command[0][1:] == "Namecall":
                 pass
-            if command[1] == "Defend":
+            if command[0][1:] == "Defend":
                 pass
-            if command[1] == "Beat_Bludger":
+            if command[0][1:] == "Beat_Bludger":
                 pass
-            if command[1] == "Double_Hit":
+            if command[0][1:] == "Double_Hit":
                 pass
-            if command[1] == "Wait":
+            if command[0][1:] == "Wait":
                 pass
         if users.get(session['username'])["role"] == 'seeker':
-            if command[1] == "Seek":
+            if command[0][1:] == "Seek":
                 pass
-            if command[1] == "Dodge_Bludger":
+            if command[0][1:] == "Dodge_Bludger":
                 pass
-            if command[1] == "Namecall":
+            if command[0][1:] == "Namecall":
                 pass
-            if command[1] == "Slow_Hover":
+            if command[0][1:] == "Slow_Hover":
                 pass
-            if command[1] == "Wait":
+            if command[0][1:] == "Wait":
                 pass
         if users.get(session['username'])["role"] == 'keeper':
-            if command[1] == "Dodge_Bludger":
+            if command[0][1:] == "Dodge_Bludger":
                 pass
-            if command[1] == "Namecall":
+            if command[0][1:] == "Namecall":
                 pass
-            if command[1] == "Defend":
+            if command[0][1:] == "Defend":
                 pass
-            if command[1] == "Block":
+            if command[0][1:] == "Block":
                 pass
-            if command[1] == "Wait":
+            if command[0][1:] == "Wait":
                 pass
-            if command[1] == "Slow_Hower":
+            if command[0][1:] == "Slow_Hower":
                 pass
-            if command[1] == "Pass":
+            if command[0][1:] == "Pass":
                 pass
 
 
     chat_history.append(f"{session['username']}: {message}")
-    save_chat_history()
 
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
         return jsonify({"success": True, "message": "Message sent."})
