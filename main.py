@@ -635,7 +635,8 @@ def send_message():
                     chat_history.append(f"{session['username']} has taken possession of the Quaffle.")
                 else:
                     if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1]:
-                        if random.uniform(0,100) < (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1):
+                        #if random.uniform(0,100) < (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1):
+                        if True:
                             snatch_event = True
                             print(type(users.get(command[-1])))
                             print(type(users.get(command[-1])["skills"]))
