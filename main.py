@@ -847,20 +847,21 @@ def send_message():
                     if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.5) + ((users.get(session['username'])["skills"]["handling"]) * 0.5):
                         chat_history.append(f"{session['username']} hovers gracefully over the pitch. Wait, is that the snitch?")
                         snitch_spot = True
+
+                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.1) + ((users.get(session['username'])["skills"]["accuracy"]) * 0.1):
+                            users.get(session['username'])['team']["score"] += 150
+                            score1 = teams.get(selected_teams[0])["score"]
+                            score2 = teams.get(selected_teams[1])["score"]
+                            winner = selected_teams[0] if score1 > score2 else selected_teams[1]
+                            chat_history.append(f"{session['username']} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
+                            snitch_caught = True
+                        else:
+                            chat_history.append(f"{session['username']} dives for the snitch but misses it.")
+                            if random.uniform(0,100)/100 < 0.1:
+                                snitch_spot = False
+                            
                     else:
                         chat_history.append(f"{session['username']}’s slow hover drags on, leaving them vulnerable.")
-                    
-                    if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.1) + ((users.get(session['username'])["skills"]["accuracy"]) * 0.1):
-                        users.get(session['username'])['team']["score"] += 150
-                        score1 = teams.get(selected_teams[0])["score"]
-                        score2 = teams.get(selected_teams[1])["score"]
-                        winner = selected_teams[0] if score1 > score2 else selected_teams[1]
-                        chat_history.append(f"{session['username']} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
-                        snitch_caught = True
-                    else:
-                        chat_history.append(f"{session['username']} dives for the snitch but misses it.")
-                        if random.uniform(0,100)/100 < 0.1:
-                            snitch_spot = False
 
                 elif command[0][1:] == "Wait":
                     users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
