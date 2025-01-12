@@ -7,3 +7,4 @@ Whoever has quaffle can only pass or from them can be snatched.
 Wound means wait for 1 turn.
 Injury means wait for 3 turns.
 When hit by bludger, quaffle is dropped. Can be picked.
+Cooldowns.
