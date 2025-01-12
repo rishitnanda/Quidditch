@@ -705,7 +705,7 @@ def send_message():
                         if random.uniform(0,100)/100 < score_chance * ((users.get(session['username'])["skills"]["accuracy"] * 0.4) + (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1) + (users.get(session['username'])["skills"]["morale"] * 0.05)):
                             chat_history.append(f"{session['username']} lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, a flawless display of precision and strength.")
                             users.get(session['username'])["skills"]["strength"] * 0.97
-                            quaffle_possession = "Goal" + teams.get(users.get(session['username'])['team'])[-4]
+                            quaffle_possession = "Goal" + teams.get(users.get(session['username'])['team'])['players'][-4]
 
                 elif command[0][1:] == "Dunk" and session['username'] not in wounded and session['username'] not in injured:
                     if session['username'] == quaffle_possession:
@@ -715,7 +715,7 @@ def send_message():
                             chat_history.append(f"{session['username']} attempts a dunk but is blocked by the keeper who now has the quaffle.")
                         users.get(session['username'])["skills"]["strength"] * 0.93
                         users.get(session['username'])["skills"]["defense"] * 0.93
-                        quaffle_possession = teams.get(users.get(session['username'])['team'])[-4]
+                        quaffle_possession = teams.get(users.get(session['username'])['team'])['players'][-4]
 
                 elif command[0][1:] == "Snatch" and session['username'] not in wounded and session['username'] not in injured:
                     if quaffle_possession == None:
