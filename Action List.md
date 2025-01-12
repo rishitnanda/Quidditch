@@ -3,7 +3,7 @@
    Activate: After Snatch by Opponent.
    Counter: None
    Effect: Reduces handling by 10%.
-   Success Rate: `(Handling + Defense + Agility) / 3`
+   Success Rate: `(handling + Defense + agility) / 3`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -16,7 +16,7 @@
    Activate: After Beat Bludger, Double Hit by Opponent.
    Counter: None
    Effect: Reduces handling by 10%.  
-   Success Rate: `(Handling + Defense + Agility) / 3`
+   Success Rate: `(handling + Defense + agility) / 3`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -28,7 +28,7 @@
 3. Namecall: Disrupt a player's focus.
    Counter: None
    Effect: Reduces opponent’s morale by 5%.  
-   Success Rate: `(Morale - Strength) / 2`  
+   Success Rate: `(morale - strength) / 2`  
    Chance of Warning: 20%
    Cooldown: 1 Action
 
@@ -53,7 +53,7 @@
    Activate: If has Quaffle. 
    Counter: Block
    Effect: Reduces strength by 3%.  
-   Success Rate: `score_chance * (Accuracy * 0.4) + (Handling * 0.3) + (Strength * 0.2) + (Agility * 0.1) + (Morale * 0.05)`
+   Success Rate: `score_chance * (accuracy * 0.4) + (handling * 0.3) + (strength * 0.2) + (agility * 0.1) + (morale * 0.05)`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -63,7 +63,7 @@
    Activate: If has Quaffle. 
    Counter: None 
    Effect: Decreases strength and defense by 7%.  
-   Success Rate: `score_chance * (Accuracy * 0.1) + (Handling * 0.05) + (Strength * 0.1) + (Agility * 0.1) + (Morale * 0.1)`
+   Success Rate: `score_chance * (accuracy * 0.1) + (handling * 0.05) + (strength * 0.1) + (agility * 0.1) + (morale * 0.1)`
    Chance of Warning: 0%
    Cooldown: 2 Actions
 
@@ -76,7 +76,7 @@
    Activate: If not has Quaffle. No ongoing snatch event.
    Counter: Dodge Player
    Effect: Reduces opponent morale by 2% (if Success)
-   Success Rate: `(Handling * 0.3) + (Strength * 0.2) + (Agility * 0.1)`
+   Success Rate: `(handling * 0.3) + (strength * 0.2) + (agility * 0.1)`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -93,7 +93,7 @@
 1. Namecall: Disrupt a player's focus.  
    Counter: None
    Effect: Reduces opponent’s morale by 5%.  
-   Success Rate: `(Morale - Strength) / 2`  
+   Success Rate: `(morale - strength) / 2`  
    Chance of Warning: 20%
    Cooldown: 1 Action
 
@@ -106,7 +106,7 @@
    Activate: After Beat Bludger, Double Hit by Opponent.
    Counter: None
    Effect: Prevent bludger hit.
-   Success Rate: `(Strength + Morale) / 2`
+   Success Rate: `(strength + morale) / 2`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -118,7 +118,7 @@
 3. Beat Bludger: Hit a bludger towards an opponent.
    Counter: Dodge Bludger, Defend, Beat Bludger
    Effect: Reduces opponent’s handling by 5% (if Success).
-   Success Rate: `(Accuracy + Handling - Agility) / 2`
+   Success Rate: `(accuracy + handling - agility) / 2`
    Wound Rate: 3%
    Injury Rate: 1%
    Chance of Warning: 0%
@@ -154,7 +154,7 @@
    Activate: If snitch spotted.
    Counter: Dodge Bludger
    Effect: Reduces defense by 10%. Increase chance of losing sight of snitch by 5%.
-   Success Rate: `0.1 + (Speed * 0.1) + (Accuracy * 0.1)`
+   Success Rate: `0.1 + (Speed * 0.1) + (accuracy * 0.1)`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -165,7 +165,7 @@
    Activate: After Beat Bludger, Double Hit.
    Counter: Dodge Bludger 
    Effect: Reduces handling by 10%.    
-   Success Rate: `(Handling + Defense - Agility) / 2`
+   Success Rate: `(handling + Defense - agility) / 2`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -177,7 +177,7 @@
 3. Namecall: Disrupt a player's focus.  
    Counter: None
    Effect: Reduces opponent’s morale by 5%.  
-   Success Rate: `(Morale - Strength) / 2`  
+   Success Rate: `(morale - strength) / 2`  
    Chance of Warning: 20%
    Cooldown: 1 Action
 
@@ -190,7 +190,7 @@
    Activate: If snitch not spotted.
    Counter: None
    Effect: Increases agility by 10%, reduces speed by 10%. Increases chance of spotting snitch by 2%.
-   Success Rate: `(Agility + Handling) / 2`
+   Success Rate: `(agility + handling) / 2`
    Chance of Warning: 0%
    Cooldown: 1 Action
 
@@ -212,7 +212,7 @@
    Activate: After Beat Bludger, Double Hit.
    Counter: None
    Effect: Reduces handling by 10%. 
-   Success Rate: `(Handling + Defense - Agility) / 2`
+   Success Rate: `(handling + Defense - agility) / 2`
    Chance of Warning: 0%
    Cooldown: None
 
@@ -224,7 +224,7 @@
 2. Namecall: Disrupt a player's focus.  
    Counter: None
    Effect: Reduces opponent’s morale by 5%.  
-   Success Rate: `(Morale - Strength) / 2`  
+   Success Rate: `(morale - strength) / 2`  
    Chance of Warning: 20%
    Cooldown: 1 Action
 
@@ -236,7 +236,7 @@
 3. Defend: Set up a defensive strategy.  
    Counter: None
    Effect: Increases defense for the team by 5%.  
-   Success Rate: `(Agility + Morale) / 2`
+   Success Rate: `(agility + morale) / 2`
    Chance of Warning: 0%
    Cooldown: 2 Actions.
 
@@ -244,7 +244,7 @@
    Activate: After Shoot by Opponent.
    Counter: None 
    Effect: Increases defense by 15%.  
-   Success Rate: `(Strength + Morale + Defense) / 3`
+   Success Rate: `(strength + morale + Defense) / 3`
    Chance of Warning: 0%
    Cooldown: None
 

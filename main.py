@@ -370,7 +370,7 @@ teams = {
     }
 }
 
-global quaffle_possession, snitch_caught, snitch_spot, bludger_approach, wounded, injured, game_started, chat_history, chat_file, selected_teams, score_chance
+global quaffle_possession, snitch_caught, snitch_spot, bludger_approach, wounded, injured, game_started, chat_history, chat_file, selected_teams, score_chance, snatch_event, snatching
 quaffle_possession = None
 snitch_caught = False
 snitch_spot = False
@@ -382,6 +382,8 @@ chat_history = []
 chat_file = "chat_history.txt"
 selected_teams = []
 score_chance = 1
+snatch_event = False
+snatching = []
 
 
 # HTML templates
@@ -602,7 +604,7 @@ def download_chat():
 
 @app.route("/send_message", methods=["POST"])
 def send_message():
-    global quaffle_possession, snitch_caught, snitch_spot, bludger_approach, wounded, injured, game_started, chat_history, chat_file, selected_teams, score_chance
+    global quaffle_possession, snitch_caught, snitch_spot, bludger_approach, wounded, injured, game_started, chat_history, chat_file, selected_teams, score_chance, snatch_event, snatching
     if session["username"] != "referee":
         if "username" not in session or session["username"] not in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players']:
             return redirect(url_for("dashboard"))
@@ -619,9 +621,9 @@ def send_message():
             if command[0][1:] == "Namecall":
                 pass
             if command[0][1:] == "Pass":
-                if session['username'].split()[-1] == quaffle_possession:
+                if session['username'] == quaffle_possession:
                     score_chance *= 1.05
-                    chat_history.append(f"{session['username'].split()[-1]} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
+                    chat_history.append(f"{session['username']} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
                     quaffle_possession = command[-1]
             if command[0][1:] == "Shoot":
                 pass
@@ -629,8 +631,16 @@ def send_message():
                 pass
             if command[0][1:] == "Snatch":
                 if quaffle_possession == None:
-                    quaffle_possession = session['username'].split()[-1]
+                    quaffle_possession = session['username']
                     chat_history.append(f"{session['username']} has taken possession of the Quaffle.")
+                else:
+                    if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1]:
+                        if random.uniform(0,100) < (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1):
+                            snatch_event = True
+                            print(type(users.get(command[-1])))
+                            print(type(users.get(command[-1])["skills"]))
+                            print(type(users.get(command[-1])["skills"]["strength"]))
+
             if command[0][1:] == "Wait":
                 pass
         if users.get(session['username'])["role"] == 'beater':
