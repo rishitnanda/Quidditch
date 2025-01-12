@@ -622,7 +622,7 @@ def action():
 
 @app.route("/send_message", methods=["POST"])
 def send_message():
-    print(session["username"]['role'])
+    print(users.get(session['username'])["role"])
     if session["username"] != "referee":
         if "username" not in session or session["username"] not in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players']:
             return redirect(url_for("dashboard"))
