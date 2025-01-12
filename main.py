@@ -612,6 +612,7 @@ def send_message():
 
     if command[0] == "/":
         if users.get(session['username'])["role"] == 'chaser':
+            print(command)
             if command[1] == "Dodge_Player":
                 pass
             if command[1] == "Dodge_Bludger":
