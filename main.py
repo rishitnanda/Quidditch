@@ -605,6 +605,7 @@ def logout():
 @app.route("/start_game", methods=["POST"])
 def start_game():
     if "username" in session and session["username"] == "referee" and len(selected_teams) == 2:
+        print(selected_teams)
         global game_started
         game_started = True
         chat_history.append("The Game has begun and the Chasers rush to get hold of the Quaffle.")
@@ -717,8 +718,6 @@ def send_message():
                         users.get(session['username'])["skills"]["defense"] * 0.93
                         
                         r = selected_teams[0] if selected_teams[0] != teams.get(users.get(session['username'])['team']) else selected_teams[1]
-
-                        print(r)
 
                         quaffle_possession = r['players'][-4]
 
