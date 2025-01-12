@@ -257,10 +257,12 @@
 
 6. Slow Hover: Hover slowly in front of goal posts.  
    Counter: None
-   Effect: Increases defense by 10%, increase strength by 10%.
-   Success Rate: `(Agility + Handling) / 2`
+   Effect: Increases defense by 10%, increase strength by 10%. Decreases speed by 10%.
+   Success Rate: `100%`
    Chance of Warning: 0%
    Cooldown: 2 Actions
+
+   - "{player} hovers in front of the goal hoops watching the quaffle carefully.
 
 7. Pass: Pass the Quaffle to a teammate. 
    Activate: If has Quaffle. 
