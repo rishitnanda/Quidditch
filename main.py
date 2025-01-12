@@ -586,6 +586,7 @@ def start_game():
     if "username" in session and session["username"] == "referee" and len(selected_teams) == 2:
         global game_started
         game_started = True
+        chat_history.append("The Game has begun and the Chasers rush to get hold of the Quaffle.")
     return redirect(url_for("dashboard"))
 
 @app.route("/end_game", methods=["POST"])
