@@ -642,19 +642,22 @@ def send_message():
 
     if command[0][0] == "/" and snitch_caught == False:
         if users.get(session['username'])["role"] == 'chaser':
-            if snatching[1] == session['username']:
-                if command[0][1:] == "Dodge_Player":
-                    if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["handling"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["agility"]))/3:
-                        chat_history.append(f"With a swift sidestep, {session['username']} skillfully evades {snatching[0]}’s pursuit, gracefully maintaining control of the Quaffle. Their handling proves exceptional as they regain their momentum.")
-                    else:
-                        chat_history.append(f"{session['username']} attempts to dodge but fails to shake off {snatching[0]}, their movements too predictable. {snatching[0]} closes in, forcing {session['username']} to lose possession of the Quaffle.")
-                        quaffle_possession = snatching[0]
-                        score_chance = 1
-                        users.get(session['username'])["skills"]["handling"] *= 0.9
-                    snatch_event = False
-                    snatching = []
+            try:
+                if snatching[1] == session['username']:
+                    if command[0][1:] == "Dodge_Player":
+                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["handling"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["agility"]))/3:
+                            chat_history.append(f"With a swift sidestep, {session['username']} skillfully evades {snatching[0]}’s pursuit, gracefully maintaining control of the Quaffle. Their handling proves exceptional as they regain their momentum.")
+                        else:
+                            chat_history.append(f"{session['username']} attempts to dodge but fails to shake off {snatching[0]}, their movements too predictable. {snatching[0]} closes in, forcing {session['username']} to lose possession of the Quaffle.")
+                            quaffle_possession = snatching[0]
+                            score_chance = 1
+                            users.get(session['username'])["skills"]["handling"] *= 0.9
+                        snatch_event = False
+                        snatching = []
+            except:
+                pass
 
-            elif session['username'] in dodge:
+            if session['username'] in dodge:
                 if command[0][1:] == "Dodge_Bludger":
                     if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
                         chat_history.append(f"{session['username']} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback.")
