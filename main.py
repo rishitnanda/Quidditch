@@ -1109,7 +1109,7 @@ def send_message():
                         score_chance = 1
                     quaffle_possession = session['username']
 
-                elif command[0][1:] == "Slow_Hower" and session['username'] not in wounded and session['username'] not in injured:
+                elif command[0][1:] == "slow_hover" and session['username'] not in wounded and session['username'] not in injured:
 
                     if users.get(session['username'])['cools'][5] == 1:
                         users.get(session['username'])['cools'][5] = 0
