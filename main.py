@@ -532,7 +532,7 @@ game_template_referee = """
                     chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
                     setTimeout(() => {
                         chatBox.scrollTop = chatBox.scrollHeight;
-                    }, 1);
+                    }, 2);
                 })
                 .catch(error => console.error('Error updating chat:', error));
         }        
