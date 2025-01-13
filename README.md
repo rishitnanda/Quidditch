@@ -17,3 +17,5 @@
 - Avoid Bludgers and opposing players while searching for the Snitch.
 
 * More to be added soon!
+
+complete end button

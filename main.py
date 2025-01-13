@@ -695,14 +695,14 @@ def send_message():
             if injured[session['username']] == 0:
                 injured.remove(session['username'])
 
-        if teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and (teams.get[users.get(session['username'])['team']]['players'][3] in wounded or teams.get[users.get(session['username'])['team']]['players'][3] in injured):
+        if command[0][1:] == "Substitute" and teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and (teams.get[users.get(session['username'])['team']]['players'][3] in wounded or teams.get[users.get(session['username'])['team']]['players'][3] in injured):
             
             subsi[users.get(session['username'])['team']] = [command[-1], users.get(command[-1])["role"], users.get(command[-1])["cools"]]
 
             users[command[-1]]["role"] = "keeper"
             users[command[-1]]["cools"] = [0,0,1,2,0,1,0]
         
-        if teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and subsi.get(users.get(session['username'])['team']) != None:
+        if command[0][1:] == "Substitute" and teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and subsi.get(users.get(session['username'])['team']) != None:
 
             users[subsi.get(users.get(session['username'])['team'])[0]]["role"] = subsi.get(users.get(session['username'])['team'])[1]
             users[subsi.get(users.get(session['username'])['team'])[0]]["cools"] = subsi.get(users.get(session['username'])['team'])[2]
