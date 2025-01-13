@@ -651,6 +651,7 @@ def start_game():
 @app.route("/end_game", methods=["POST"])
 def end_game():
     if "username" in session and session["username"] == "referee":
+        global chat_file
         save_chat_history()
         return send_file(chat_file, as_attachment=True)
     if "username" in session and session["username"] == "referee":

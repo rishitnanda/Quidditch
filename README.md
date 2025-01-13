@@ -18,4 +18,4 @@
 
 * More to be added soon!
 
-complete end button
+scroll down chat on load
