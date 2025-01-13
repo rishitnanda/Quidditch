@@ -863,7 +863,7 @@ def send_message():
                     elif command[0][1:] == "Wait":
                         users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
 
-            if users.get(session['username'])["role"] == 'beater':
+            elif users.get(session['username'])["role"] == 'beater':
                 if command[0][1:] == "Namecall" and session['username'] not in dodge and session['username'] not in wounded and session['username'] not in injured:
                     if users.get(session['username'])['team'] != users.get(command[-1])['team']:
 
@@ -945,7 +945,7 @@ def send_message():
                 elif command[0][1:] == "Wait" and session['username'] not in dodge:
                     users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
 
-            if users.get(session['username'])["role"] == 'seeker':
+            elif users.get(session['username'])["role"] == 'seeker':
                 if session['username'] in dodge:
                     if command[0][1:] == "Dodge_Bludger":
                         if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
@@ -1032,7 +1032,7 @@ def send_message():
                     elif command[0][1:] == "Wait":
                         users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
 
-            if users.get(session['username'])["role"] == 'keeper':
+            elif users.get(session['username'])["role"] == 'keeper':
                 if session['username'] in dodge:
                     if command[0][1:] == "Dodge_Bludger":
                         if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
@@ -1127,17 +1127,17 @@ def send_message():
                     elif command[0][1:] == "Wait":
                         users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
             else:
-                chat_history.append(f"{session['username']}: {message}", 'why')
+                chat_history.append(f"{session['username']}: {message}")
             
             if teams.get(users.get(session['username'])['team'])['warns'] ==3:
                 teams.get(users.get(session['username'])['team'])['warns'] = 0
                 teams.get(users.get(session['username'])['team'])['score'] -= 10
 
         except Exception as error:
-            chat_history.append(f"{session['username']}: {message}", error)
+            chat_history.append(f"{session['username']}: {message}")
 
     else:
-        chat_history.append(f"{session['username']}: {message}", 2)
+        chat_history.append(f"{session['username']}: {message}")
 
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
         return jsonify({"success": True, "message": "Message sent."})
