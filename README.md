@@ -195,5 +195,4 @@
 - Counter: None  
 - Effect: No additional effect  
 - Chance of Warning: No  
-- Cooldown: None  
 - Cooldown: None
