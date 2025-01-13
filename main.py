@@ -532,7 +532,7 @@ game_template_referee = """
                     chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
                     setTimeout(() => {
                         chatBox.scrollTop = chatBox.scrollHeight;
-                    }, 0.03);
+                    }, 0.1);
                 })
                 .catch(error => console.error('Error updating chat:', error));
         }        
@@ -581,11 +581,13 @@ game_template_player = """
                 .then(data => {
                     const chatBox = document.getElementById('chat-box');
                     chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
-                    chatBox.scrollTop = chatBox.scrollHeight; // Auto-scroll to the bottom
+                    setTimeout(() => {
+                        chatBox.scrollTop = chatBox.scrollHeight;
+                    }, 0.1);
                 })
                 .catch(error => console.error('Error updating chat:', error));
-        }
-        setInterval(updateChat, 2000); // Update every 2 seconds
+        }        
+        setInterval(updateChat, 750); // Update every 2 seconds
     </script>
 </body>
 </html>
