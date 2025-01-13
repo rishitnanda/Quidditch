@@ -438,8 +438,8 @@ global quaffle_possession, snitch_caught, snitch_spot, wounded, injured, game_st
 quaffle_possession = None
 snitch_caught = False
 snitch_spot = False
-wounded = []
-injured = []
+wounded = {}
+injured = {}
 game_started = False
 chat_history = []
 chat_file = "chat_history.txt"
