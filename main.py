@@ -1127,7 +1127,7 @@ def send_message():
                     elif command[0][1:] == "Wait":
                         users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
             else:
-                chat_history.append(f"{session['username']}: {message}")
+                chat_history.append(f"{session['username']}: {message}", 'why')
             
             if teams.get(users.get(session['username'])['team'])['warns'] ==3:
                 teams.get(users.get(session['username'])['team'])['warns'] = 0
