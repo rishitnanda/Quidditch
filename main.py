@@ -1133,11 +1133,11 @@ def send_message():
                 teams.get(users.get(session['username'])['team'])['warns'] = 0
                 teams.get(users.get(session['username'])['team'])['score'] -= 10
 
-        except:
-            chat_history.append(f"{session['username']}: {message}")
+        except Exception as error:
+            chat_history.append(f"{session['username']}: {message}", error)
 
     else:
-        chat_history.append(f"{session['username']}: {message}")
+        chat_history.append(f"{session['username']}: {message}", 2)
 
     if request.headers.get("X-Requested-With") == "XMLHttpRequest":
         return jsonify({"success": True, "message": "Message sent."})
