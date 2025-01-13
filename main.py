@@ -694,6 +694,10 @@ def send_message():
             injured[session['username']] -= 1
             if injured[session['username']] == 0:
                 injured.remove(session['username'])
+                if users.get(session['username'])["role"] == "keeper":
+                                users[subsi.get(users.get(session['username'])['team'])[0]]["role"] = subsi.get(users.get(session['username'])['team'])[1]
+                                users[subsi.get(users.get(session['username'])['team'])[0]]["cools"] = subsi.get(users.get(session['username'])['team'])[2]
+                                subsi[users.get(session['username'])['team']] = None
 
         if command[0][1:] == "Substitute" and teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and (teams.get[users.get(session['username'])['team']]['players'][3] in wounded or teams.get[users.get(session['username'])['team']]['players'][3] in injured):
             
