@@ -529,6 +529,7 @@ game_template_referee = """
                 .then(response => response.json())
                 .then(data => {
                     const chatBox = document.getElementById('chat-box');
+                    chatBox.scrollTop = chatBox.scrollHeight;
                     chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
                     setTimeout(() => {
                         chatBox.scrollTop = chatBox.scrollHeight;
