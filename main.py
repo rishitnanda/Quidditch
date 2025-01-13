@@ -534,6 +534,22 @@ game_template_referee = """
                 })
                 .catch(error => console.error('Error updating chat:', error));
         }
+        function scrollToBottom() {
+            fetch("/send_message"
+            .then(response => response.json())
+            .then(data => {
+                if (data.success) {
+                    updateChat(); // Update the chat content
+                    scrollToBottom(); // Scroll to the bottom
+                }
+            });
+                const chatContainer = document.getElementById('chat-container');
+                if (chatContainer) {
+                chatContainer.scrollTop = chatContainer.scrollHeight;
+                }
+            }
+        }
+        
         setInterval(updateChat, 2000); // Update every 2 seconds
     </script>
 </body>
