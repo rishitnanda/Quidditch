@@ -525,7 +525,7 @@ game_template_referee = """
     </form>
     <script>
         function updateChat() {
-            fetch('/send_message')
+            fetch('/get_chat')
                 .then(response => response.json())
                 .then(data => {
                     const chatBox = document.getElementById('chat-box');
