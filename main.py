@@ -532,11 +532,11 @@ game_template_referee = """
                     chatBox.innerHTML = data.chat_history.map(msg => `<p>${msg}</p>`).join('');
                     setTimeout(() => {
                         chatBox.scrollTop = chatBox.scrollHeight;
-                    }, 2);
+                    }, 0.3);
                 })
                 .catch(error => console.error('Error updating chat:', error));
         }        
-        setInterval(updateChat, 2000); // Update every 2 seconds
+        setInterval(updateChat, 750); // Update every 2 seconds
     </script>
 </body>
 </html>
