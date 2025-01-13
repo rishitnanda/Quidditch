@@ -1,9 +1,9 @@
 # Quidditch Moves
 
-## Chasers [Score goals by throwing the Quaffle through the opponent's hoops.]
+## Chasers [Score goals throwing the Quaffle through opponent's hoops.]
 
 ### /Dodge_Player opponent_name
-- _Evade an incoming player._
+-_<ins>Evade an incoming player.</ins>
 - Activate: After Snatch by Opponent.  
 - Counter: None  
 - Effect: Reduces handling.  
@@ -11,7 +11,7 @@
 - Cooldown: None  
 
 ### /Dodge_Bludger
-- _Evade an incoming bludger._
+-_<ins>Evade an incoming bludger.</ins>
 - Activate: After Beat Bludger, Double Hit by Opponent.  
 - Counter: None  
 - Effect: Reduces handling.  
@@ -19,14 +19,14 @@
 - Cooldown: None  
 
 ### /Namecall opponent_name
-- _Disrupt a player's focus._
+-_<ins>Disrupt a player's focus.</ins>
 - Counter: None  
 - Effect: Reduces opponent’s morale.  
 - Chance of Warning: Yes  
 - Cooldown: 1 Action  
 
 ### /Pass teammate_name
-- _Pass the Quaffle to a teammate._
+-_<ins>Pass the Quaffle to a teammate.</ins>
 - Activate: If has Quaffle.  
 - Counter: None  
 - Effect: Increase scoring chance.  
@@ -34,7 +34,7 @@
 - Cooldown: None  
 
 ### /Shoot
-- _Attempt to score in a goalpost._
+-_<ins>Attempt to score in a goalpost.</ins>
 - Activate: If has Quaffle.  
 - Counter: Block  
 - Effect: Reduces strength.  
@@ -42,7 +42,7 @@
 - Cooldown: None  
 
 ### /Dunk
-- _Attempt a powerful or tricky shot to score._
+-_<ins>Attempt a powerful or tricky shot to score.</ins>
 - Activate: If has Quaffle.  
 - Counter: None  
 - Effect: Decreases strength and defense.  
@@ -50,7 +50,7 @@
 - Cooldown: 2 Actions  
 
 ### /Snatch or /Snatch opponent_name
-- _Attempt to pick up dropped Quaffle or snatch Quaffle from opponent._
+-_<ins>Attempt to pick up dropped Quaffle or snatch Quaffle from opponent.</ins>
 - Activate: If not has Quaffle. No ongoing snatch event.  
 - Counter: Dodge Player  
 - Effect: Reduces opponent morale  
@@ -58,7 +58,7 @@
 - Cooldown: None  
 
 ### /Wait
-- _Wait for another action to be enabled._
+-_<ins>Wait for another action to be enabled.</ins>
 - Counter: None  
 - Effect: No additional effect  
 - Chance of Warning: No  
@@ -67,14 +67,14 @@
 ## Beaters [Use Bludgers to disrupt the opposing team's players]
 
 ### /Namecall opponent_name
-- _Disrupt a player's focus._  
+-_<ins>Disrupt a player's focus.</ins>  
 - Counter: None  
 - Effect: Reduces opponent’s morale.  
 - Chance of Warning: Yes  
 - Cooldown: 1 Action  
 
 ### /Defend teammate_name
-- _Protect other players._  
+-_<ins>Protect other players.</ins>  
 - Activate: After Beat Bludger, Double Hit by Opponent.  
 - Counter: None  
 - Effect: Prevent bludger hit.  
@@ -82,14 +82,14 @@
 - Cooldown: None  
 
 ### /Beat_Bludger opponent_name
-- _Hit a bludger towards an opponent._  
+-_<ins>Hit a bludger towards an opponent.</ins>  
 - Counter: Dodge Bludger, Defend, Beat Bludger  
 - Effect: Reduces opponent’s handling.  
 - Chance of Warning: No  
 - Cooldown: 1 Action  
 
 ### /Double_Hit opponent_name
-- _Beat two bludgers in rapid succession._  
+-_<ins>Beat two bludgers in rapid succession.</ins>  
 - Activate: No incoming bludger towards beater  
 - Counter: Dodge Bludger, Defend  
 - Effect: Reduces defense and handling.  
@@ -97,7 +97,7 @@
 - Cooldown: 2 Actions  
 
 ### /Wait
-- _Wait for another action to be enabled._  
+-_<ins>Wait for another action to be enabled.</ins>  
 - Counter: None  
 - Effect: No additional effect  
 - Chance of Warning: No  
@@ -106,7 +106,7 @@
 ## Keepers [Guard the hoops to prevent the opposing team from scoring.]
 
 ### /Dodge_Bludger
-- _Evade a bludger._  
+-_<ins>Evade a bludger.</ins>  
 - Activate: After Beat Bludger, Double Hit.  
 - Counter: None  
 - Effect: Reduces handling.  
@@ -114,21 +114,21 @@
 - Cooldown: None  
 
 ### /Namecall opponent_name
-- _Disrupt a player's focus._  
+-_<ins>Disrupt a player's focus.</ins>  
 - Counter: None  
 - Effect: Reduces opponent’s morale.  
 - Chance of Warning: Yes  
 - Cooldown: 1 Action  
 
 ### /Defend
-- _Set up a defensive strategy._  
+-_<ins>Set up a defensive strategy.</ins>  
 - Counter: None  
 - Effect: Increases defense for the team.  
 - Chance of Warning: No  
 - Cooldown: 2 Actions  
 
 ### /Block
-- _Block a shot at the goalposts._  
+-_<ins>Block a shot at the goalposts.</ins>  
 - Activate: After Shoot by Opponent.  
 - Counter: None  
 - Effect: Increases defense.  
@@ -136,31 +136,31 @@
 - Cooldown: None  
 
 ### /Wait
-- _Wait for another action to be enabled._  
+-_<ins>Wait for another action to be enabled.</ins>  
 - Counter: None  
 - Effect: No additional effect  
 - Chance of Warning: No  
 - Cooldown: None  
 
 ### /Slow_Hover
-- _Hover slowly in front of goal posts._  
+-_<ins>Hover slowly in front of goal posts.</ins>  
 - Counter: None  
 - Effect: Increases defense, increases strength, decreases speed.  
 - Chance of Warning: No  
 - Cooldown: 1 Action
 
 ### /Pass teammate_name
-- _Pass the Quaffle to a teammate._  
+-_<ins>Pass the Quaffle to a teammate.</ins>  
 - Activate: If has Quaffle.  
 - Counter: None  
 - Effect: No additional effect.  
 - Chance of Warning: No  
 - Cooldown: None  
 
-## Seekers [Catch the Golden Snitch to end the game and score 150 points for their team.]
+## Seekers [Catch the Golden Snitch to end the game and score 150 points.]
 
 ### /Dive
-- _Attempt to capture the Snitch._  
+-_<ins>Attempt to capture the Snitch.</ins>  
 - Activate: If snitch spotted.  
 - Counter: Dodge Bludger  
 - Effect: Reduces defense. Increase chance of losing sight of snitch.  
@@ -168,7 +168,7 @@
 - Cooldown: None  
 
 ### /Dodge_Bludger
-- _Evade an incoming bludger._  
+-_<ins>Evade an incoming bludger.</ins>  
 - Activate: After Beat Bludger, Double Hit.  
 - Counter: Dodge Bludger  
 - Effect: Reduces handling.  
@@ -176,14 +176,14 @@
 - Cooldown: None  
 
 ### /Namecall opponent_name
-- _Disrupt a player's focus._  
+-_<ins>Disrupt a player's focus.</ins>  
 - Counter: None  
 - Effect: Reduces opponent’s morale.  
 - Chance of Warning: Yes  
 - Cooldown: 1 Action  
 
 ### /Slow_Hover
-- _Hover slowly to anticipate the Snitch's movements._  
+-_<ins>Hover slowly to anticipate the Snitch's movements.</ins>  
 - Activate: If snitch not spotted.  
 - Counter: None  
 - Effect: Increases agility, reduces speed. Increases chance of spotting snitch.  
@@ -191,7 +191,7 @@
 - Cooldown: 1 Action  
 
 ### /Wait
-- _Wait for another action to be enabled._  
+-_<ins>Wait for another action to be enabled.</ins>  
 - Counter: None  
 - Effect: No additional effect  
 - Chance of Warning: No  
