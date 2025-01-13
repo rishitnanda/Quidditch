@@ -694,90 +694,185 @@ def send_message():
 
     if command[0][0] == "/" and snitch_caught == False and command[-1] not in wounded and command[-1] not in injured:
 
-        if session['username'] in wounded:
-            wounded[session['username']] -= 1
-            if wounded[session['username']] == 0:
-                wounded.remove(session['username'])
-                if users.get(session['username'])["role"] == "keeper":
-                                users[subsi.get(users.get(session['username'])['team'])[0]]["role"] = subsi.get(users.get(session['username'])['team'])[1]
-                                users[subsi.get(users.get(session['username'])['team'])[0]]["cools"] = subsi.get(users.get(session['username'])['team'])[2]
-                                subsi[users.get(session['username'])['team']] = None
+        try:
+            if session['username'] in wounded:
+                wounded[session['username']] -= 1
+                if wounded[session['username']] == 0:
+                    wounded.remove(session['username'])
+                    if users.get(session['username'])["role"] == "keeper":
+                                    users[subsi.get(users.get(session['username'])['team'])[0]]["role"] = subsi.get(users.get(session['username'])['team'])[1]
+                                    users[subsi.get(users.get(session['username'])['team'])[0]]["cools"] = subsi.get(users.get(session['username'])['team'])[2]
+                                    subsi[users.get(session['username'])['team']] = None
 
-        if session['username'] in injured:
-            injured[session['username']] -= 1
-            if injured[session['username']] == 0:
-                injured.remove(session['username'])
-                if users.get(session['username'])["role"] == "keeper":
-                                users[subsi.get(users.get(session['username'])['team'])[0]]["role"] = subsi.get(users.get(session['username'])['team'])[1]
-                                users[subsi.get(users.get(session['username'])['team'])[0]]["cools"] = subsi.get(users.get(session['username'])['team'])[2]
-                                subsi[users.get(session['username'])['team']] = None
+            if session['username'] in injured:
+                injured[session['username']] -= 1
+                if injured[session['username']] == 0:
+                    injured.remove(session['username'])
+                    if users.get(session['username'])["role"] == "keeper":
+                                    users[subsi.get(users.get(session['username'])['team'])[0]]["role"] = subsi.get(users.get(session['username'])['team'])[1]
+                                    users[subsi.get(users.get(session['username'])['team'])[0]]["cools"] = subsi.get(users.get(session['username'])['team'])[2]
+                                    subsi[users.get(session['username'])['team']] = None
 
-        if command[0][1:] == "Substitute" and teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and (teams.get[users.get(session['username'])['team']]['players'][3] in wounded or teams.get[users.get(session['username'])['team']]['players'][3] in injured):
+            if command[0][1:] == "Substitute" and teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and (teams.get[users.get(session['username'])['team']]['players'][3] in wounded or teams.get[users.get(session['username'])['team']]['players'][3] in injured):
+                
+                subsi[users.get(session['username'])['team']] = [command[-1], users.get(command[-1])["role"], users.get(command[-1])["cools"]]
+
+                users[command[-1]]["role"] = "keeper"
+                users[command[-1]]["cools"] = [0,0,1,2,0,1,0]
             
-            subsi[users.get(session['username'])['team']] = [command[-1], users.get(command[-1])["role"], users.get(command[-1])["cools"]]
+            if command[0][1:] == "Substitute" and teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and subsi.get(users.get(session['username'])['team']) != None:
 
-            users[command[-1]]["role"] = "keeper"
-            users[command[-1]]["cools"] = [0,0,1,2,0,1,0]
-        
-        if command[0][1:] == "Substitute" and teams.get[users.get(session['username'])['team']]['captain'] == session['username'] and subsi.get(users.get(session['username'])['team']) != None:
+                users[subsi.get(users.get(session['username'])['team'])[0]]["role"] = subsi.get(users.get(session['username'])['team'])[1]
+                users[subsi.get(users.get(session['username'])['team'])[0]]["cools"] = subsi.get(users.get(session['username'])['team'])[2]
 
-            users[subsi.get(users.get(session['username'])['team'])[0]]["role"] = subsi.get(users.get(session['username'])['team'])[1]
-            users[subsi.get(users.get(session['username'])['team'])[0]]["cools"] = subsi.get(users.get(session['username'])['team'])[2]
+                subsi[users.get(session['username'])['team']] = [command[-1], users.get(command[-1])["role"], users.get(command[-1])["cools"]]
 
-            subsi[users.get(session['username'])['team']] = [command[-1], users.get(command[-1])["role"], users.get(command[-1])["cools"]]
+                users[command[-1]]["role"] = "keeper"
+                users[command[-1]]["cools"] = [0,0,1,2,0,1,0]
 
-            users[command[-1]]["role"] = "keeper"
-            users[command[-1]]["cools"] = [0,0,1,2,0,1,0]
+            if users.get(session['username'])["role"] == 'chaser':
+                try:
+                    if snatching[1] == session['username']:
+                        if command[0][1:] == "Dodge_Player":
+                            if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["handling"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["agility"]))/3:
+                                chat_history.append(f"With a swift sidestep, {session['username']} skillfully evades {snatching[0]}’s pursuit, gracefully maintaining control of the Quaffle. Their handling proves exceptional as they regain their momentum.")
+                            else:
+                                chat_history.append(f"{session['username']} attempts to dodge but fails to shake off {snatching[0]}, their movements too predictable. {snatching[0]} closes in, forcing {session['username']} to lose possession of the Quaffle.")
+                                quaffle_possession = snatching[0]
+                                score_chance = 1
+                                users.get(session['username'])["skills"]["handling"] *= 0.9
+                            snatch_event = False
+                            snatching = []
+                except:
+                    pass
 
-        if users.get(session['username'])["role"] == 'chaser':
-            try:
-                if snatching[1] == session['username']:
-                    if command[0][1:] == "Dodge_Player":
-                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["handling"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["agility"]))/3:
-                            chat_history.append(f"With a swift sidestep, {session['username']} skillfully evades {snatching[0]}’s pursuit, gracefully maintaining control of the Quaffle. Their handling proves exceptional as they regain their momentum.")
+                if session['username'] in dodge:
+                    if command[0][1:] == "Dodge_Bludger":
+                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
+                            chat_history.append(f"{session['username']} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback.")
                         else:
-                            chat_history.append(f"{session['username']} attempts to dodge but fails to shake off {snatching[0]}, their movements too predictable. {snatching[0]} closes in, forcing {session['username']} to lose possession of the Quaffle.")
-                            quaffle_possession = snatching[0]
-                            score_chance = 1
+                            chat_history.append(f"A well-timed bludger strikes {session['username']} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
+                            users.get(session['username'])["skills"]["agility"] *= 0.9
                             users.get(session['username'])["skills"]["handling"] *= 0.9
-                        snatch_event = False
-                        snatching = []
-            except:
-                pass
+                            if quaffle_possession == session['username']:
+                                quaffle_possession = None
+                                chat_history.append(f"{session['username']} loses possession of the Quaffle which is now up for grabs.")
+                            
+                            t = random.random()
+                            if t < 0.08:
+                                chat_history.append(f"{session['username']} is wounded and moves away from the field.")
+                                wounded[session['username']] = 2
+                            elif 0.08 < t < 0.11:
+                                chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
+                                injured[session['username']] = 5
 
-            if session['username'] in dodge:
-                if command[0][1:] == "Dodge_Bludger":
-                    if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
-                        chat_history.append(f"{session['username']} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback.")
-                    else:
-                        chat_history.append(f"A well-timed bludger strikes {session['username']} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
-                        users.get(session['username'])["skills"]["agility"] *= 0.9
-                        users.get(session['username'])["skills"]["handling"] *= 0.9
-                        if quaffle_possession == session['username']:
-                            quaffle_possession = None
-                            chat_history.append(f"{session['username']} loses possession of the Quaffle which is now up for grabs.")
-                        
-                        t = random.random()
-                        if t < 0.08:
-                            chat_history.append(f"{session['username']} is wounded and moves away from the field.")
-                            wounded[session['username']] = 2
-                        elif 0.08 < t < 0.11:
-                            chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
-                            injured[session['username']] = 5
+                        dodge.remove(session['username'])
 
-                    dodge.remove(session['username'])
+                else:
+                    if command[0][1:] == "Namecall" and session['username'] not in wounded and session['username'] not in injured:
 
-            else:
-                if command[0][1:] == "Namecall" and session['username'] not in wounded and session['username'] not in injured:
+                        if users.get(session['username'])['team'] != users.get(command[-1])['team']:
 
+                            if users.get(session['username'])['cools'][2] == 1:
+                                users.get(session['username'])['cools'][2] = 0
+                            else:
+                                users.get(session['username'])['cools'][2] = 1
+
+                            if users.get(session['username'])['cools'][2] == 0:
+
+                                if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
+                                    (users.get(command[-1])["skills"]["morale"]) *= 0.95
+                                    if random.uniform(0,100)/100 < 0.2:
+                                        chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, throwing them off their game who hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct to {session['username']}.")
+                                    else:
+                                        chat_history.append(f"{command[-1]} looks fazed, wonder what happened.")
+                                else:
+                                    if random.uniform(0,100)/100 < 0.2:
+                                        chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, who remains unfazed. A warning is issued for unsportsmanlike conduct to {session['username']}.")
+                                    else:
+                                        chat_history.append(f"{command[-1]} swoops past {session['username']}.")
+
+                    elif command[0][1:] == "Pass" and session['username'] not in wounded and session['username'] not in injured:
+                        if session['username'] == quaffle_possession and users.get(session['username'])['team'] == users.get(command[-1])['team']:
+                            score_chance *= 1.05
+                            chat_history.append(f"{session['username']} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
+                            quaffle_possession = command[-1]
+
+                    elif command[0][1:] == "Shoot" and session['username'] not in wounded and session['username'] not in injured:
+
+                        if session['username'] == quaffle_possession:
+
+                            if users.get(session['username'])['cools'][4] == 1:
+                                users.get(session['username'])['cools'][4] = 0
+                            else:
+                                users.get(session['username'])['cools'][4] = 1
+
+                            if users.get(session['username'])['cools'][4] == 0:
+
+                                if random.uniform(0,100)/100 < score_chance * ((users.get(session['username'])["skills"]["accuracy"] * 0.4) + (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1) + (users.get(session['username'])["skills"]["morale"] * 0.05)):
+                                    chat_history.append(f"{session['username']} lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, a flawless display of precision and strength.")
+                                    users.get(session['username'])["skills"]["strength"] * 0.97
+                                    quaffle_possession = "Goal" + teams.get(users.get(session['username'])['team'])['players'][-4]
+                                else:
+                                    chat_history.append(f"{session['username']} takes a shot but misses the hoop by a hair's breadth. The Quaffle ricochets off the goalpost and is now up for grabs.")
+                                    quaffle_possession = None
+
+                    elif command[0][1:] == "Dunk" and session['username'] not in wounded and session['username'] not in injured:
+
+                        if session['username'] == quaffle_possession:
+
+                            if users.get(session['username'])['cools'][5] == 2:
+                                users.get(session['username'])['cools'][5] = 1
+                            elif users.get(session['username'])['cools'][5] == 1:
+                                users.get(session['username'])['cools'][5] = 0
+                            else:
+                                users.get(session['username'])['cools'][5] = 2
+                            
+                            if users.get(session['username'])['cools'][5] == 0:
+                                
+                                if random.uniform(0,100)/100 < score_chance * ((users.get(session['username'])["skills"]["accuracy"] * 0.1) + (users.get(session['username'])["skills"]["handling"] * 0.05) + (users.get(session['username'])["skills"]["strength"] * 0.1) + (users.get(session['username'])["skills"]["agility"] * 0.1) + (users.get(session['username'])["skills"]["morale"] * 0.1)):
+                                    chat_history.append(f"In a stunning display of athleticism, {session['username']} leaps towards the hoop, executing a perfect dunk that leaves the crowd roaring. Their timing and power were immaculate, making the keeper's block impossible who now has the quaffle.")
+                                else:
+                                    chat_history.append(f"{session['username']} attempts a dunk but is blocked by the keeper who now has the quaffle.")
+                                users.get(session['username'])["skills"]["strength"] * 0.93
+                                users.get(session['username'])["skills"]["defense"] * 0.93
+                                
+                                r = teams.get(selected_teams[0]) if teams.get(selected_teams[0]) != teams.get(users.get(session['username'])['team']) else selected_teams[1]
+
+                                quaffle_possession = r['players'][-4]
+
+                    elif command[0][1:] == "Snatch" and session['username'] not in wounded and session['username'] not in injured:
+                        if quaffle_possession == None:
+                            quaffle_possession = session['username']
+                            chat_history.append(f"{session['username']} has taken possession of the Quaffle.")
+                        else:
+
+                            if users.get(session['username'])['cools'][6] == 1:
+                                users.get(session['username'])['cools'][6] = 0
+                            else:
+                                users.get(session['username'])['cools'][6] = 1
+                            
+                            if users.get(session['username'])['cools'][6] == 0:
+
+                                if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1] and users.get(session['username'])['team'] != users.get(command[-1])['team']:
+                                    snatch_event = True
+                                    chat_history.append(f"{session['username']} approaches {quaffle_possession} from behind in an attempt to claim the ball.")
+                                    snatching.append(session['username'])
+                                    snatching.append(quaffle_possession)
+
+                    elif command[0][1:] == "Wait":
+                        users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
+
+            if users.get(session['username'])["role"] == 'beater':
+                if command[0][1:] == "Namecall" and session['username'] not in dodge and session['username'] not in wounded and session['username'] not in injured:
                     if users.get(session['username'])['team'] != users.get(command[-1])['team']:
 
-                        if users.get(session['username'])['cools'][2] == 1:
-                            users.get(session['username'])['cools'][2] = 0
+                        if users.get(session['username'])['cools'][0] == 1:
+                            users.get(session['username'])['cools'][0] = 0
                         else:
-                            users.get(session['username'])['cools'][2] = 1
-
-                        if users.get(session['username'])['cools'][2] == 0:
+                            users.get(session['username'])['cools'][0] = 1
+                        
+                        if users.get(session['username'])['cools'][0] == 0:
 
                             if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
                                 (users.get(command[-1])["skills"]["morale"]) *= 0.95
@@ -791,127 +886,72 @@ def send_message():
                                 else:
                                     chat_history.append(f"{command[-1]} swoops past {session['username']}.")
 
-                elif command[0][1:] == "Pass" and session['username'] not in wounded and session['username'] not in injured:
-                    if session['username'] == quaffle_possession and users.get(session['username'])['team'] == users.get(command[-1])['team']:
-                        score_chance *= 1.05
-                        chat_history.append(f"{session['username']} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
-                        quaffle_possession = command[-1]
-
-                elif command[0][1:] == "Shoot" and session['username'] not in wounded and session['username'] not in injured:
-
-                    if session['username'] == quaffle_possession:
-
-                        if users.get(session['username'])['cools'][4] == 1:
-                            users.get(session['username'])['cools'][4] = 0
-                        else:
-                            users.get(session['username'])['cools'][4] = 1
-
-                        if users.get(session['username'])['cools'][4] == 0:
-
-                            if random.uniform(0,100)/100 < score_chance * ((users.get(session['username'])["skills"]["accuracy"] * 0.4) + (users.get(session['username'])["skills"]["handling"] * 0.3) + (users.get(session['username'])["skills"]["strength"] * 0.2) + (users.get(session['username'])["skills"]["agility"] * 0.1) + (users.get(session['username'])["skills"]["morale"] * 0.05)):
-                                chat_history.append(f"{session['username']} lines up and fires a calculated shot. The Quaffle arcs gracefully through the air, a flawless display of precision and strength.")
-                                users.get(session['username'])["skills"]["strength"] * 0.97
-                                quaffle_possession = "Goal" + teams.get(users.get(session['username'])['team'])['players'][-4]
-                            else:
-                                chat_history.append(f"{session['username']} takes a shot but misses the hoop by a hair's breadth. The Quaffle ricochets off the goalpost and is now up for grabs.")
-                                quaffle_possession = None
-
-                elif command[0][1:] == "Dunk" and session['username'] not in wounded and session['username'] not in injured:
-
-                    if session['username'] == quaffle_possession:
-
-                        if users.get(session['username'])['cools'][5] == 2:
-                            users.get(session['username'])['cools'][5] = 1
-                        elif users.get(session['username'])['cools'][5] == 1:
-                            users.get(session['username'])['cools'][5] = 0
-                        else:
-                            users.get(session['username'])['cools'][5] = 2
-                        
-                        if users.get(session['username'])['cools'][5] == 0:
-                            
-                            if random.uniform(0,100)/100 < score_chance * ((users.get(session['username'])["skills"]["accuracy"] * 0.1) + (users.get(session['username'])["skills"]["handling"] * 0.05) + (users.get(session['username'])["skills"]["strength"] * 0.1) + (users.get(session['username'])["skills"]["agility"] * 0.1) + (users.get(session['username'])["skills"]["morale"] * 0.1)):
-                                chat_history.append(f"In a stunning display of athleticism, {session['username']} leaps towards the hoop, executing a perfect dunk that leaves the crowd roaring. Their timing and power were immaculate, making the keeper's block impossible who now has the quaffle.")
-                            else:
-                                chat_history.append(f"{session['username']} attempts a dunk but is blocked by the keeper who now has the quaffle.")
-                            users.get(session['username'])["skills"]["strength"] * 0.93
-                            users.get(session['username'])["skills"]["defense"] * 0.93
-                            
-                            r = teams.get(selected_teams[0]) if teams.get(selected_teams[0]) != teams.get(users.get(session['username'])['team']) else selected_teams[1]
-
-                            quaffle_possession = r['players'][-4]
-
-                elif command[0][1:] == "Snatch" and session['username'] not in wounded and session['username'] not in injured:
-                    if quaffle_possession == None:
-                        quaffle_possession = session['username']
-                        chat_history.append(f"{session['username']} has taken possession of the Quaffle.")
+                elif command[0][1:] == "Defend" and session['username'] not in dodge and session['username'] not in wounded and session['username'] not in injured:
+                    if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["strength"]) + (users.get(session['username'])["skills"]["morale"]))/2:
+                        chat_history.append(f"{session['username']} steps in front of {command[-1]} with impeccable timing, using their strength to block an incoming bludger. Their defensive play keeps the team safe and the offense in motion.")
                     else:
+                        chat_history.append(f"A well-timed bludger strikes {command[-1]} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
+                        users.get(session['username'])["skills"]["strength"] *= 0.9
+                        users.get(session['username'])["skills"]["defense"] *= 0.9
+                    dodge.remove(command[-1])
 
-                        if users.get(session['username'])['cools'][6] == 1:
-                            users.get(session['username'])['cools'][6] = 0
-                        else:
-                            users.get(session['username'])['cools'][6] = 1
+                elif command[0][1:] == "Beat_Bludger" and session['username'] not in wounded and session['username'] not in injured and command[-1] not in dodge and command[-1] not in wounded and command[-1] not in injured:
+
+                    if users.get(session['username'])['cools'][2] == 1:
+                            users.get(session['username'])['cools'][2] = 0
+                    else:
+                        users.get(session['username'])['cools'][2] = 1
                         
-                        if users.get(session['username'])['cools'][6] == 0:
+                    if users.get(session['username'])['cools'][2] == 0:
 
-                            if snatch_event == False and quaffle_possession != session['username'] and quaffle_possession == command[-1] and users.get(session['username'])['team'] != users.get(command[-1])['team']:
-                                snatch_event = True
-                                chat_history.append(f"{session['username']} approaches {quaffle_possession} from behind in an attempt to claim the ball.")
-                                snatching.append(session['username'])
-                                snatching.append(quaffle_possession)
+                        if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["accuracy"]) + (users.get(session['username'])["skills"]["handling"]))/2:
+                            chat_history.append(f"With a powerful swing, {session['username']} sends a bludger flying directly towards {command[-1]}.")
+                            dodge.append(command[-1])
+                            if session['username'] in dodge:
+                                dodge.remove(session['username'])
+                        else:
+                            chat_history.append(f"{session['username']} misses their target, the bludger sailing off course. Their aim is off, and the opposing player continues without hindrance, maintaining their offensive drive unhindered.")
+                            if session['username'] in dodge:
+                                dodge.remove(session['username'])
+                                users.get(session['username'])["skills"]["agility"] *= 0.9
+                                users.get(session['username'])["skills"]["handling"] *= 0.9
+                                
+                                t = random.random()
+                                if t < 0.08:
+                                    chat_history.append(f"{session['username']} is wounded and moves away from the field.")
+                                    wounded[session['username']] = 2
+                                elif 0.08 < t < 0.11:
+                                    chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
+                                    injured[session['username']] = 5
 
-                elif command[0][1:] == "Wait":
+
+                elif command[0][1:] == "Double_Hit" and session['username'] not in dodge and session['username'] not in wounded and session['username'] not in injured and command[-1] not in dodge and command[-1] not in wounded and command[-1] not in injured:
+                    
+                    if users.get(session['username'])['cools'][3] == 2:
+                        users.get(session['username'])['cools'][3] = 1
+                    elif users.get(session['username'])['cools'][3] == 1:
+                        users.get(session['username'])['cools'][3] = 0
+                    else:
+                        users.get(session['username'])['cools'][3] = 2
+                    
+                    if users.get(session['username'])['cools'][3] == 0:
+
+                        if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]))/2:
+                            chat_history.append(f"With a powerful swing, {session['username']} sends bludgers flying directly towards {command[-1]}.")
+                            dodge.append(command[-1])
+                        else:
+                            chat_history.append(f"{session['username']} misses their target, the bludgers sailing off course. Their aim is off, and the opposing player continues without hindrance, maintaining their offensive drive unhindered.")
+
+                elif command[0][1:] == "Wait" and session['username'] not in dodge:
                     users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
 
-        if users.get(session['username'])["role"] == 'beater':
-            if command[0][1:] == "Namecall" and session['username'] not in dodge and session['username'] not in wounded and session['username'] not in injured:
-                if users.get(session['username'])['team'] != users.get(command[-1])['team']:
-
-                    if users.get(session['username'])['cools'][0] == 1:
-                        users.get(session['username'])['cools'][0] = 0
-                    else:
-                        users.get(session['username'])['cools'][0] = 1
-                    
-                    if users.get(session['username'])['cools'][0] == 0:
-
-                        if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
-                            (users.get(command[-1])["skills"]["morale"]) *= 0.95
-                            if random.uniform(0,100)/100 < 0.2:
-                                chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, throwing them off their game who hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct to {session['username']}.")
-                            else:
-                                chat_history.append(f"{command[-1]} looks fazed, wonder what happened.")
+            if users.get(session['username'])["role"] == 'seeker':
+                if session['username'] in dodge:
+                    if command[0][1:] == "Dodge_Bludger":
+                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
+                            chat_history.append(f"{session['username']} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback.")
                         else:
-                            if random.uniform(0,100)/100 < 0.2:
-                                chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, who remains unfazed. A warning is issued for unsportsmanlike conduct to {session['username']}.")
-                            else:
-                                chat_history.append(f"{command[-1]} swoops past {session['username']}.")
-
-            elif command[0][1:] == "Defend" and session['username'] not in dodge and session['username'] not in wounded and session['username'] not in injured:
-                if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["strength"]) + (users.get(session['username'])["skills"]["morale"]))/2:
-                    chat_history.append(f"{session['username']} steps in front of {command[-1]} with impeccable timing, using their strength to block an incoming bludger. Their defensive play keeps the team safe and the offense in motion.")
-                else:
-                    chat_history.append(f"A well-timed bludger strikes {command[-1]} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
-                    users.get(session['username'])["skills"]["strength"] *= 0.9
-                    users.get(session['username'])["skills"]["defense"] *= 0.9
-                dodge.remove(command[-1])
-
-            elif command[0][1:] == "Beat_Bludger" and session['username'] not in wounded and session['username'] not in injured and command[-1] not in dodge and command[-1] not in wounded and command[-1] not in injured:
-
-                if users.get(session['username'])['cools'][2] == 1:
-                        users.get(session['username'])['cools'][2] = 0
-                else:
-                    users.get(session['username'])['cools'][2] = 1
-                    
-                if users.get(session['username'])['cools'][2] == 0:
-
-                    if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["accuracy"]) + (users.get(session['username'])["skills"]["handling"]))/2:
-                        chat_history.append(f"With a powerful swing, {session['username']} sends a bludger flying directly towards {command[-1]}.")
-                        dodge.append(command[-1])
-                        if session['username'] in dodge:
-                            dodge.remove(session['username'])
-                    else:
-                        chat_history.append(f"{session['username']} misses their target, the bludger sailing off course. Their aim is off, and the opposing player continues without hindrance, maintaining their offensive drive unhindered.")
-                        if session['username'] in dodge:
-                            dodge.remove(session['username'])
+                            chat_history.append(f"A well-timed bludger strikes {session['username']} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
                             users.get(session['username'])["skills"]["agility"] *= 0.9
                             users.get(session['username'])["skills"]["handling"] *= 0.9
                             
@@ -923,212 +963,178 @@ def send_message():
                                 chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
                                 injured[session['username']] = 5
 
-
-            elif command[0][1:] == "Double_Hit" and session['username'] not in dodge and session['username'] not in wounded and session['username'] not in injured and command[-1] not in dodge and command[-1] not in wounded and command[-1] not in injured:
+                        dodge.remove(session['username'])
                 
-                if users.get(session['username'])['cools'][3] == 2:
-                    users.get(session['username'])['cools'][3] = 1
-                elif users.get(session['username'])['cools'][3] == 1:
-                    users.get(session['username'])['cools'][3] = 0
                 else:
-                    users.get(session['username'])['cools'][3] = 2
-                
-                if users.get(session['username'])['cools'][3] == 0:
-
-                    if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]))/2:
-                        chat_history.append(f"With a powerful swing, {session['username']} sends bludgers flying directly towards {command[-1]}.")
-                        dodge.append(command[-1])
-                    else:
-                        chat_history.append(f"{session['username']} misses their target, the bludgers sailing off course. Their aim is off, and the opposing player continues without hindrance, maintaining their offensive drive unhindered.")
-
-            elif command[0][1:] == "Wait" and session['username'] not in dodge:
-                users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
-
-        if users.get(session['username'])["role"] == 'seeker':
-            if session['username'] in dodge:
-                if command[0][1:] == "Dodge_Bludger":
-                    if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
-                        chat_history.append(f"{session['username']} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback.")
-                    else:
-                        chat_history.append(f"A well-timed bludger strikes {session['username']} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
-                        users.get(session['username'])["skills"]["agility"] *= 0.9
-                        users.get(session['username'])["skills"]["handling"] *= 0.9
-                        
-                        t = random.random()
-                        if t < 0.08:
-                            chat_history.append(f"{session['username']} is wounded and moves away from the field.")
-                            wounded[session['username']] = 2
-                        elif 0.08 < t < 0.11:
-                            chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
-                            injured[session['username']] = 5
-
-                    dodge.remove(session['username'])
-            
-            else:
-                if command[0][1:] == "Dive" and snitch_spot == True and session['username'] not in wounded and session['username'] not in injured:
-                    if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.1) + ((users.get(session['username'])["skills"]["accuracy"]) * 0.1):
-                        users.get(session['username'])['team']["score"] += 150
-                        score1 = teams.get(selected_teams[0])["score"]
-                        score2 = teams.get(selected_teams[1])["score"]
-                        winner = selected_teams[0] if score1 > score2 else selected_teams[1]
-                        chat_history.append(f"{session['username']} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
-                        snitch_caught = True
-                    else:
-                        chat_history.append(f"{session['username']} dives for the snitch but misses it.")
-                        if random.uniform(0,100)/100 < 0.1:
-                            snitch_spot = False
-
-                elif command[0][1:] == "Namecall" and session['username'] not in wounded and session['username'] not in injured:
-                    if users.get(session['username'])['team'] != users.get(command[-1])['team']:
-
-                        if users.get(session['username'])['cools'][2] == 1:
-                            users.get(session['username'])['cools'][2] = 0
+                    if command[0][1:] == "Dive" and snitch_spot == True and session['username'] not in wounded and session['username'] not in injured:
+                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.1) + ((users.get(session['username'])["skills"]["accuracy"]) * 0.1):
+                            users.get(session['username'])['team']["score"] += 150
+                            score1 = teams.get(selected_teams[0])["score"]
+                            score2 = teams.get(selected_teams[1])["score"]
+                            winner = selected_teams[0] if score1 > score2 else selected_teams[1]
+                            chat_history.append(f"{session['username']} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
+                            snitch_caught = True
                         else:
-                            users.get(session['username'])['cools'][2] = 1
-                        
-                        if users.get(session['username'])['cools'][2] == 0:
-                                
-                            if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
-                                (users.get(command[-1])["skills"]["morale"]) *= 0.95
-                                if random.uniform(0,100)/100 < 0.2:
-                                    chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, throwing them off their game who hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct to {session['username']}.")
-                                else:
-                                    chat_history.append(f"{command[-1]} looks fazed, wonder what happened.")
+                            chat_history.append(f"{session['username']} dives for the snitch but misses it.")
+                            if random.uniform(0,100)/100 < 0.1:
+                                snitch_spot = False
+
+                    elif command[0][1:] == "Namecall" and session['username'] not in wounded and session['username'] not in injured:
+                        if users.get(session['username'])['team'] != users.get(command[-1])['team']:
+
+                            if users.get(session['username'])['cools'][2] == 1:
+                                users.get(session['username'])['cools'][2] = 0
                             else:
-                                if random.uniform(0,100)/100 < 0.2:
-                                    chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, who remains unfazed. A warning is issued for unsportsmanlike conduct to {session['username']}.")
-                                else:
-                                    chat_history.append(f"{command[-1]} swoops past {session['username']}.")
-                                
-                elif command[0][1:] == "Slow_Hover" and session['username'] not in wounded and session['username'] not in injured:
-
-                    if users.get(session['username'])['cools'][3] == 1:
-                        users.get(session['username'])['cools'][3] = 0
-                    else:
-                        users.get(session['username'])['cools'][3] = 1
-                    
-                    if users.get(session['username'])['cools'][3] == 0:
-
-                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.5) + ((users.get(session['username'])["skills"]["handling"]) * 0.5):
-                            chat_history.append(f"{session['username']} hovers gracefully over the pitch. Wait, is that the snitch?")
-                            snitch_spot = True
-
-                            if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.1) + ((users.get(session['username'])["skills"]["accuracy"]) * 0.1):
-                                users.get(session['username'])['team']["score"] += 150
-                                score1 = teams.get(selected_teams[0])["score"]
-                                score2 = teams.get(selected_teams[1])["score"]
-                                winner = selected_teams[0] if score1 > score2 else selected_teams[1]
-                                chat_history.append(f"{session['username']} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
-                                snitch_caught = True
-                            else:
-                                chat_history.append(f"{session['username']} dives for the snitch but misses it.")
-                                if random.uniform(0,100)/100 < 0.1:
-                                    snitch_spot = False
-                                
-                        else:
-                            chat_history.append(f"{session['username']}’s slow hover drags on, leaving them vulnerable.")
-
-                elif command[0][1:] == "Wait":
-                    users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
-
-        if users.get(session['username'])["role"] == 'keeper':
-            if session['username'] in dodge:
-                if command[0][1:] == "Dodge_Bludger":
-                    if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
-                        chat_history.append(f"{session['username']} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback.")
-                    else:
-                        chat_history.append(f"A well-timed bludger strikes {session['username']} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
-                        users.get(session['username'])["skills"]["agility"] *= 0.9
-                        users.get(session['username'])["skills"]["handling"] *= 0.9
-                        
-                        t = random.random()
-                        if t < 0.08:
-                            chat_history.append(f"{session['username']} is wounded and moves away from the field.")
-                            wounded[session['username']] = 2
-                        elif 0.08 < t < 0.11:
-                            chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
-                            injured[session['username']] = 5
-
-                        if quaffle_possession == session['username']:
-                            quaffle_possession = None
-                            chat_history.append(f"{session['username']} loses possession of the Quaffle which is now up for grabs.")
-                    dodge.remove(session['username'])
-
-            elif quaffle_possession == session['username']:
-                if command[0][1:] == "Pass" and session['username'] not in wounded and session['username'] not in injured:
-                    if users.get(session['username'])['team'] == users.get(command[-1])['team']:
-                        chat_history.append(f"{session['username']} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
-                        quaffle_possession = command[-1]
-
-            else:
-                if command[0][1:] == "Namecall" and session['username'] not in wounded and session['username'] not in injured:
-                    if users.get(session['username'])['team'] != users.get(command[-1])['team']:
-
-                        if users.get(session['username'])['cools'][2] == 1:
-                            users.get(session['username'])['cools'][2] = 0
-                        else:
-                            users.get(session['username'])['cools'][2] = 1
-                        
-                        if users.get(session['username'])['cools'][2] == 0:
-
-                            if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
-                                (users.get(command[-1])["skills"]["morale"]) *= 0.95
-                                if random.uniform(0,100)/100 < 0.2:
-                                    chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, throwing them off their game who hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct to {session['username']}.")
-                                else:
-                                    chat_history.append(f"{command[-1]} looks fazed, wonder what happened.")
-                            else:
-                                if random.uniform(0,100)/100 < 0.2:
-                                    chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, who remains unfazed. A warning is issued for unsportsmanlike conduct to {session['username']}.")
-                                else:
-                                    chat_history.append(f"{command[-1]} swoops past {session['username']}.")
-                                
-                elif command[0][1:] == "Defend" and session['username'] not in wounded and session['username'] not in injured:
-                    if users.get(session['username'])['cools'][3] == 2:
-                        users.get(session['username'])['cools'][3] = 1
-                    elif users.get(session['username'])['cools'][3] == 1:
-                        users.get(session['username'])['cools'][3] = 0
-                    else:
-                        users.get(session['username'])['cools'][3] = 2
-                    
-                    if users.get(session['username'])['cools'][3] == 0:
-                    
-                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.5) + ((users.get(session['username'])["skills"]["morale"]) * 0.5):
-                            for i in users.get(session['username'])['team']['players']:
-                                users.get(i)["skills"]["defense"] *= 1.05
-                            chat_history.append(f"{session['username']} braces themselves, their defense bolstered by a surge of determination.")
-
-                elif command[0][1:] == "Block" and quaffle_possession == "Goal" + session['username'] and session['username'] not in wounded and session['username'] not in injured:
-                    if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["strength"]) + (users.get(session['username'])["skills"]["morale"]) + (users.get(session['username'])["skills"]["defense"]))/3:
-                        chat_history.append(f"{session['username']} leaps into action, blocking the incoming Quaffle with a powerful save. Their strength and reflexes were unmatched, preventing a goal.")
-                    else:
-                        chat_history.append(f"{session['username']} attempts to block the Quaffle but fails to stop the goal.")
-                        s = teams.get(selected_teams[0]) if teams.get(selected_teams[0]) != teams.get(users.get(session['username'])['team']) else selected_teams[1]
-                        teams.get(s)["score"] += 10
-                        chat_history.append(f"Goal! 10 points to {s}.")
-                        score_chance = 1
-                    quaffle_possession = session['username']
-
-                elif command[0][1:] == "slow_hover" and session['username'] not in wounded and session['username'] not in injured:
-
-                    if users.get(session['username'])['cools'][5] == 1:
-                        users.get(session['username'])['cools'][5] = 0
-                    else:
-                        users.get(session['username'])['cools'][5] = 1
-                    
-                    if users.get(session['username'])['cools'][5] == 0:
+                                users.get(session['username'])['cools'][2] = 1
                             
-                        chat_history.append(f"{session['username']} hovers in front of the goal hoops watching the quaffle carefully.")
-                        users.get(session['username'])["skills"]["defense"] *= 1.1
-                        users.get(session['username'])["skills"]["strength"] *= 1.1
-                        users.get(session['username'])["skills"]["agility"] *= 0.9
+                            if users.get(session['username'])['cools'][2] == 0:
+                                    
+                                if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
+                                    (users.get(command[-1])["skills"]["morale"]) *= 0.95
+                                    if random.uniform(0,100)/100 < 0.2:
+                                        chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, throwing them off their game who hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct to {session['username']}.")
+                                    else:
+                                        chat_history.append(f"{command[-1]} looks fazed, wonder what happened.")
+                                else:
+                                    if random.uniform(0,100)/100 < 0.2:
+                                        chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, who remains unfazed. A warning is issued for unsportsmanlike conduct to {session['username']}.")
+                                    else:
+                                        chat_history.append(f"{command[-1]} swoops past {session['username']}.")
+                                    
+                    elif command[0][1:] == "Slow_Hover" and session['username'] not in wounded and session['username'] not in injured:
 
-                elif command[0][1:] == "Wait":
-                    users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
-        
-        if teams.get(users.get(session['username'])['team'])['warns'] ==3:
-            teams.get(users.get(session['username'])['team'])['warns'] = 0
-            teams.get(users.get(session['username'])['team'])['score'] -= 10
+                        if users.get(session['username'])['cools'][3] == 1:
+                            users.get(session['username'])['cools'][3] = 0
+                        else:
+                            users.get(session['username'])['cools'][3] = 1
+                        
+                        if users.get(session['username'])['cools'][3] == 0:
+
+                            if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.5) + ((users.get(session['username'])["skills"]["handling"]) * 0.5):
+                                chat_history.append(f"{session['username']} hovers gracefully over the pitch. Wait, is that the snitch?")
+                                snitch_spot = True
+
+                                if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.1) + ((users.get(session['username'])["skills"]["accuracy"]) * 0.1):
+                                    users.get(session['username'])['team']["score"] += 150
+                                    score1 = teams.get(selected_teams[0])["score"]
+                                    score2 = teams.get(selected_teams[1])["score"]
+                                    winner = selected_teams[0] if score1 > score2 else selected_teams[1]
+                                    chat_history.append(f"{session['username']} plunges forward with impressive speed and has caught the snitch. Game Over! {winner} wins by {score1} — {score2}.")
+                                    snitch_caught = True
+                                else:
+                                    chat_history.append(f"{session['username']} dives for the snitch but misses it.")
+                                    if random.uniform(0,100)/100 < 0.1:
+                                        snitch_spot = False
+                                    
+                            else:
+                                chat_history.append(f"{session['username']}’s slow hover drags on, leaving them vulnerable.")
+
+                    elif command[0][1:] == "Wait":
+                        users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
+
+            if users.get(session['username'])["role"] == 'keeper':
+                if session['username'] in dodge:
+                    if command[0][1:] == "Dodge_Bludger":
+                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) + (users.get(session['username'])["skills"]["defense"]) + (users.get(session['username'])["skills"]["handling"]))/3:
+                            chat_history.append(f"{session['username']} ducks at the last second, narrowly avoiding the incoming bludger. They remain unscathed and maintain possession, their agility and quick thinking preventing any setback.")
+                        else:
+                            chat_history.append(f"A well-timed bludger strikes {session['username']} squarely, knocking them off course. Their handling falters as they struggle to regain their footing.")
+                            users.get(session['username'])["skills"]["agility"] *= 0.9
+                            users.get(session['username'])["skills"]["handling"] *= 0.9
+                            
+                            t = random.random()
+                            if t < 0.08:
+                                chat_history.append(f"{session['username']} is wounded and moves away from the field.")
+                                wounded[session['username']] = 2
+                            elif 0.08 < t < 0.11:
+                                chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
+                                injured[session['username']] = 5
+
+                            if quaffle_possession == session['username']:
+                                quaffle_possession = None
+                                chat_history.append(f"{session['username']} loses possession of the Quaffle which is now up for grabs.")
+                        dodge.remove(session['username'])
+
+                elif quaffle_possession == session['username']:
+                    if command[0][1:] == "Pass" and session['username'] not in wounded and session['username'] not in injured:
+                        if users.get(session['username'])['team'] == users.get(command[-1])['team']:
+                            chat_history.append(f"{session['username']} releases a perfect pass, the Quaffle soaring through the air with pinpoint accuracy. {command[-1]} catches it effortlessly, continuing the offensive without missing a beat.")
+                            quaffle_possession = command[-1]
+
+                else:
+                    if command[0][1:] == "Namecall" and session['username'] not in wounded and session['username'] not in injured:
+                        if users.get(session['username'])['team'] != users.get(command[-1])['team']:
+
+                            if users.get(session['username'])['cools'][2] == 1:
+                                users.get(session['username'])['cools'][2] = 0
+                            else:
+                                users.get(session['username'])['cools'][2] = 1
+                            
+                            if users.get(session['username'])['cools'][2] == 0:
+
+                                if random.uniform(0,100)/100 < abs((users.get(session['username'])["skills"]["morale"]) - (users.get(session['username'])["skills"]["strength"]))/2:
+                                    (users.get(command[-1])["skills"]["morale"]) *= 0.95
+                                    if random.uniform(0,100)/100 < 0.2:
+                                        chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, throwing them off their game who hesitates, visibly shaken by the remark. A warning is issued for unsportsmanlike conduct to {session['username']}.")
+                                    else:
+                                        chat_history.append(f"{command[-1]} looks fazed, wonder what happened.")
+                                else:
+                                    if random.uniform(0,100)/100 < 0.2:
+                                        chat_history.append(f"{session['username']} delivers a biting taunt to {command[-1]}, who remains unfazed. A warning is issued for unsportsmanlike conduct to {session['username']}.")
+                                    else:
+                                        chat_history.append(f"{command[-1]} swoops past {session['username']}.")
+                                    
+                    elif command[0][1:] == "Defend" and session['username'] not in wounded and session['username'] not in injured:
+                        if users.get(session['username'])['cools'][3] == 2:
+                            users.get(session['username'])['cools'][3] = 1
+                        elif users.get(session['username'])['cools'][3] == 1:
+                            users.get(session['username'])['cools'][3] = 0
+                        else:
+                            users.get(session['username'])['cools'][3] = 2
+                        
+                        if users.get(session['username'])['cools'][3] == 0:
+                        
+                            if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["agility"]) * 0.5) + ((users.get(session['username'])["skills"]["morale"]) * 0.5):
+                                for i in users.get(session['username'])['team']['players']:
+                                    users.get(i)["skills"]["defense"] *= 1.05
+                                chat_history.append(f"{session['username']} braces themselves, their defense bolstered by a surge of determination.")
+
+                    elif command[0][1:] == "Block" and quaffle_possession == "Goal" + session['username'] and session['username'] not in wounded and session['username'] not in injured:
+                        if random.uniform(0,100)/100 < ((users.get(session['username'])["skills"]["strength"]) + (users.get(session['username'])["skills"]["morale"]) + (users.get(session['username'])["skills"]["defense"]))/3:
+                            chat_history.append(f"{session['username']} leaps into action, blocking the incoming Quaffle with a powerful save. Their strength and reflexes were unmatched, preventing a goal.")
+                        else:
+                            chat_history.append(f"{session['username']} attempts to block the Quaffle but fails to stop the goal.")
+                            s = teams.get(selected_teams[0]) if teams.get(selected_teams[0]) != teams.get(users.get(session['username'])['team']) else selected_teams[1]
+                            teams.get(s)["score"] += 10
+                            chat_history.append(f"Goal! 10 points to {s}.")
+                            score_chance = 1
+                        quaffle_possession = session['username']
+
+                    elif command[0][1:] == "slow_hover" and session['username'] not in wounded and session['username'] not in injured:
+
+                        if users.get(session['username'])['cools'][5] == 1:
+                            users.get(session['username'])['cools'][5] = 0
+                        else:
+                            users.get(session['username'])['cools'][5] = 1
+                        
+                        if users.get(session['username'])['cools'][5] == 0:
+                                
+                            chat_history.append(f"{session['username']} hovers in front of the goal hoops watching the quaffle carefully.")
+                            users.get(session['username'])["skills"]["defense"] *= 1.1
+                            users.get(session['username'])["skills"]["strength"] *= 1.1
+                            users.get(session['username'])["skills"]["agility"] *= 0.9
+
+                    elif command[0][1:] == "Wait":
+                        users.get(session['username'])["skills"][random.choice(list(users.get(session['username'])["skills"].keys()))] *= 1.02
+            else:
+                chat_history.append(f"{session['username']}: {message}")
+            
+            if teams.get(users.get(session['username'])['team'])['warns'] ==3:
+                teams.get(users.get(session['username'])['team'])['warns'] = 0
+                teams.get(users.get(session['username'])['team'])['score'] -= 10
+
+        except:
+            chat_history.append(f"{session['username']}: {message}")
 
     else:
         chat_history.append(f"{session['username']}: {message}")
