@@ -643,7 +643,6 @@ def logout():
 @app.route("/start_game", methods=["POST"])
 def start_game():
     if "username" in session and session["username"] == "referee" and len(selected_teams) == 2:
-        print(selected_teams)
         global game_started
         game_started = True
         chat_history.append("The Game has begun and the Chasers rush to get hold of the Quaffle.")
@@ -652,14 +651,24 @@ def start_game():
 @app.route("/end_game", methods=["POST"])
 def end_game():
     if "username" in session and session["username"] == "referee":
-        global game_started, chat_history, quaffle_possession, snitch_caught, selected_teams
-        game_started = False
-        chat_history = []
+        save_chat_history()
+        return send_file(chat_file, as_attachment=True)
+    if "username" in session and session["username"] == "referee":
+        global quaffle_possession, snitch_caught, snitch_spot, wounded, injured, game_started, chat_history, chat_file, selected_teams, score_chance, snatch_event, snatching, dodge, subsi
         quaffle_possession = None
         snitch_caught = False
+        snitch_spot = False
+        wounded = {}
+        injured = {}
+        game_started = False
+        chat_history = []
+        chat_file = "chat_history.txt"
         selected_teams = []
-        if os.path.exists(chat_file):
-            os.remove(chat_file)
+        score_chance = 1
+        snatch_event = False
+        snatching = []
+        dodge = []
+        subsi = {'team_1': None, 'team_2': None, 'team_3': None, 'team_4': None}
     return redirect(url_for("dashboard"))
 
 @app.route("/download_chat", methods=["POST"])
@@ -675,7 +684,6 @@ def send_message():
     if session["username"] != "referee":
         if "username" not in session or session["username"] not in teams[selected_teams[0]]['players'] + teams[selected_teams[1]]['players']:
             return redirect(url_for("dashboard"))
-    print(quaffle_possession)
     message = request.form.get("message")
     command = message.split()
 
