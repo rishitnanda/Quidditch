@@ -650,12 +650,12 @@ def start_game():
 
 @app.route("/end_game", methods=["POST"])
 def end_game():
+    global chat_file
     if "username" in session and session["username"] == "referee":
-        global chat_file
         save_chat_history()
         return send_file(chat_file, as_attachment=True)
     if "username" in session and session["username"] == "referee":
-        global quaffle_possession, snitch_caught, snitch_spot, wounded, injured, game_started, chat_history, chat_file, selected_teams, score_chance, snatch_event, snatching, dodge, subsi
+        global quaffle_possession, snitch_caught, snitch_spot, wounded, injured, game_started, chat_history, selected_teams, score_chance, snatch_event, snatching, dodge, subsi
         quaffle_possession = None
         snitch_caught = False
         snitch_spot = False
