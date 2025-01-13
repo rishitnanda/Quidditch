@@ -742,10 +742,10 @@ def send_message():
                         t = random.random()
                         if t < 0.08:
                             chat_history.append(f"{session['username']} is wounded and moves away from the field.")
-                            wounded(session['username']) = 2
+                            wounded[session['username']] = 2
                         elif 0.08 < t < 0.11:
                             chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
-                            injured(session['username']) = 5
+                            injured[session['username']] = 5
 
                     dodge.remove(session['username'])
 
@@ -900,10 +900,10 @@ def send_message():
                             t = random.random()
                             if t < 0.08:
                                 chat_history.append(f"{session['username']} is wounded and moves away from the field.")
-                                wounded(session['username']) = 2
+                                wounded[session['username']] = 2
                             elif 0.08 < t < 0.11:
                                 chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
-                                injured(session['username']) = 5
+                                injured[session['username']] = 5
 
 
             elif command[0][1:] == "Double_Hit" and session['username'] not in dodge and session['username'] not in wounded and session['username'] not in injured and command[-1] not in dodge and command[-1] not in wounded and command[-1] not in injured:
@@ -939,10 +939,10 @@ def send_message():
                         t = random.random()
                         if t < 0.08:
                             chat_history.append(f"{session['username']} is wounded and moves away from the field.")
-                            wounded(session['username']) = 2
+                            wounded[session['username']] = 2
                         elif 0.08 < t < 0.11:
                             chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
-                            injured(session['username']) = 5
+                            injured[session['username']] = 5
 
                     dodge.remove(session['username'])
             
@@ -1026,10 +1026,10 @@ def send_message():
                         t = random.random()
                         if t < 0.08:
                             chat_history.append(f"{session['username']} is wounded and moves away from the field.")
-                            wounded(session['username']) = 2
+                            wounded[session['username']] = 2
                         elif 0.08 < t < 0.11:
                             chat_history.append(f"{session['username']} is injured and leaves for a while to be treated.")
-                            injured(session['username']) = 5
+                            injured[session['username']] = 5
 
                         if quaffle_possession == session['username']:
                             quaffle_possession = None
