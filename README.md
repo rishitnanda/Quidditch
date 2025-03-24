@@ -1,3 +1,13 @@
+# Introduction
+This is the code to launch up a site to play quidditch with 14 players (7 on each team) and a game-master who overlooks the entire game settings. Players can chat in a chat-box and use commands to go through the game. The game ends when the snitch is caught and team with highest number of points wins. To login as a player, use id psw as written in code.
+
+# To-Do
+- Change site type from 'can be accessed by only 15 accounts at a time' to 'allowing accounts for many people and creating in game teams for people to play with.
+- Settings page for people to set their stats in.
+- In-game settings for game master
+- Broom stats
+- so on...
+
 # Quidditch Moves
 
 ## Chasers [Score goals throwing the Quaffle through opponent's hoops.]
